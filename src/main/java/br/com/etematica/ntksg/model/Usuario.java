@@ -1,12 +1,10 @@
-package br.com.etematica.ntksg;
+package br.com.etematica.ntksg.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-public class Customer {
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,6 +12,12 @@ public class Customer {
 
     private String firstName;
     private String lastName;
+
+    @ManyToMany
+    @JoinTable(name = "projeto_usuario"
+            , joinColumns = @JoinColumn(name = "usuario_id")
+            , inverseJoinColumns = @JoinColumn(name = "project_id"))
+    Set<Projeto> usuarioProjeto;
 
     public Integer getId() {
         return id;

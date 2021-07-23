@@ -25,5 +25,6 @@ Field properties
 - SOX: boolean
 - size:
 - decimal: Integer for numeric fields only
+- encrypt
 
 
