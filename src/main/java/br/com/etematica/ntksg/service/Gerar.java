@@ -4,9 +4,11 @@ import br.com.etematica.ntksg.model.Projeto;
 import br.com.etematica.ntksg.repository.ProjetoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.File;
 import java.util.Optional;
 
 public class Gerar {
+    private static final File TEMP_DIRECTORY = new File(System.getProperty("java.io.tmpdir"));
 
     @Autowired
     ProjetoRepositorio projetoRepositorio;
@@ -19,6 +21,7 @@ public class Gerar {
     }
 
     private void GerarPreProjeto(Optional<Projeto> projeto) {
+        File newDirectory = new File(TEMP_DIRECTORY, "teste");
     }
 
     private void GerarMeioProjeto(Optional<Projeto> projeto) {
