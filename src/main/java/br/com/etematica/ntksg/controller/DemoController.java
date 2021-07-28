@@ -1,7 +1,7 @@
 package br.com.etematica.ntksg.controller;
 
 import br.com.etematica.ntksg.model.Usuario;
-import br.com.etematica.ntksg.repository.UsuarioRepository;
+import br.com.etematica.ntksg.repository.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class DemoController {
 
     @Autowired
-    private UsuarioRepository customerRepository;
+    private UsuarioRepositorio customerRepository;
 
     @PostMapping("/add")
     public String addUsuario(@RequestParam String first, @RequestParam String last) {
