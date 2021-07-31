@@ -14,21 +14,24 @@ public class Gerar {
     ProjetoRepositorio projetoRepositorio;
 
     public void GerarProjeto(Integer id) {
-        Optional<Projeto> projeto = projetoRepositorio.findById(id);
-        GerarPreProjeto(projeto);
-        GerarMeioProjeto(projeto);
-        GerarPosProjeto(projeto);
+        Optional<Projeto> retorno = projetoRepositorio.findById(id);
+        if (retorno.isPresent()){
+            Projeto projeto = retorno.get();
+            GerarPreProjeto(projeto);
+            GerarMeioProjeto(projeto);
+            GerarPosProjeto(projeto);
+        }
     }
 
-    private void GerarPreProjeto(Optional<Projeto> projeto) {
-        File newDirectory = new File(TEMP_DIRECTORY, "teste");
+    private void GerarPreProjeto(Projeto projeto) {
+        File newDirectory = new File(TEMP_DIRECTORY, projeto.getNome());
     }
 
-    private void GerarMeioProjeto(Optional<Projeto> projeto) {
+    private void GerarMeioProjeto(Projeto projeto) {
 
     }
 
-    private void GerarPosProjeto(Optional<Projeto> projeto) {
+    private void GerarPosProjeto(Projeto projeto) {
 
     }
 
