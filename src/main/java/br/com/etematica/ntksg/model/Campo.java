@@ -7,25 +7,16 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Projeto {
-
+public class Campo {
     @Id
     private Integer id;
 
     private String nome;
-
-    @ManyToMany(mappedBy = "usuarioProjeto")
-    Set<Usuario> projetoUsuario;
-
-    @OneToMany(mappedBy = "projeto")
-    private Set<Entidade> entidades;
+    private String tipo;
 }

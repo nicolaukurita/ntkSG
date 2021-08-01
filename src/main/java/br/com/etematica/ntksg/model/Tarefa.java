@@ -7,25 +7,19 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import java.util.Set;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Projeto {
-
+public class Tarefa {
     @Id
     private Integer id;
 
     private String nome;
-
-    @ManyToMany(mappedBy = "usuarioProjeto")
-    Set<Usuario> projetoUsuario;
-
-    @OneToMany(mappedBy = "projeto")
-    private Set<Entidade> entidades;
+    private String situacao;
+    private LocalDateTime inicio;
+    private LocalDateTime termino;
 }
