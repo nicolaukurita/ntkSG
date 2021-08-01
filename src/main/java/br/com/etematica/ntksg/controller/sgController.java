@@ -33,7 +33,9 @@ public class sgController {
     @GetMapping("/gerar/{id}")
     public Tarefa findUsuarioById(@PathVariable Integer id) {
         Tarefa tarefa = new Tarefa();
-//        tarefa
+        tarefa.setId(id);
+        tarefa.setNome("gerar");
+        tarefa.setSituacao("PENDENTE");
         return tarefaRepositorio.save(tarefa);
     }
 }
