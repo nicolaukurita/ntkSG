@@ -19,6 +19,7 @@ public class Tarefa {
     private Integer id;
 
     private String nome;
+    private Integer projetoId;
     private String situacao;
     private LocalDateTime inicio;
     private LocalDateTime termino;
