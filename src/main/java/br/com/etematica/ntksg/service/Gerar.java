@@ -53,7 +53,7 @@ public class Gerar {
         try {
             velocityEngine.init();
 
-            Template t = velocityEngine.getTemplate("index.vm");
+            Template t = velocityEngine.getTemplate("template/index.vm");
 
             VelocityContext context = new VelocityContext();
             context.put("name", "World");
