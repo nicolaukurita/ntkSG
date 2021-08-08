@@ -1,3 +1,4 @@
+$ docker run --name mysql1 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
 # ntkSG
 
 Templates
@@ -12,9 +13,9 @@ Entity
 - version: boolean;
 - number of version: zero for infinite
 - Regulatory
-    - LGPD (Lei geral de proteção de dados)
-    - Audit
-    
+  - LGPD (Lei geral de proteção de dados)
+  - Audit
+
 Field properties
 - name
 - description
@@ -27,4 +28,11 @@ Field properties
 - decimal: Integer for numeric fields only
 - encrypt
 
+Download and install docker
+docker pull mysql/mysql-server:latest
+docker run -p 3306:3306 --name=mysql1 -d mysql/mysql-server:latest
 
+docker exec -it mysql1 mysql -uroot -p
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+update mysql.user set host = '%' where user='root';
+docker restart mysql1
