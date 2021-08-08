@@ -12,7 +12,7 @@ public class NtkSgConfigurator {
     @Autowired
     Gerar gerar;
 
-    @Scheduled(fixedDelay = 1000)
+//    @Scheduled(fixedDelay = 1000)
     public void gerar(){
         System.out.println("Fixed delay " + System.currentTimeMillis() / 1000);
         gerar.GerarProjetos();
