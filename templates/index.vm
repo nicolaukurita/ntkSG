@@ -1,1 +1,4 @@
-teste
+teste $name
+$projeto.getNome() - este funciona
+$projeto.nome()    - este não funciona
+$projeto           - este mostra o class

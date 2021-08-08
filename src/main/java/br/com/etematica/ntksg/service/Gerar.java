@@ -4,14 +4,15 @@ import br.com.etematica.ntksg.model.Projeto;
 import br.com.etematica.ntksg.model.Tarefa;
 import br.com.etematica.ntksg.repository.ProjetoRepositorio;
 import br.com.etematica.ntksg.repository.TarefaRepositorio;
-import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.StringWriter;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.util.Optional;
 import java.util.Set;
 
@@ -48,19 +49,22 @@ public class Gerar {
     }
 
     private void GerarMeioProjeto(Projeto projeto) {
-        VelocityEngine velocityEngine = new VelocityEngine();
+        String inputTemplate = "templates/index.vm";
+        String outputFile = projeto.getNome() + ".java";
 
         try {
+            VelocityEngine velocityEngine = new VelocityEngine();
             velocityEngine.init();
-
-            Template t = velocityEngine.getTemplate("template/index.vm");
 
             VelocityContext context = new VelocityContext();
             context.put("name", "World");
+            context.put("projeto",projeto);
 
-            StringWriter writer = new StringWriter();
-            t.merge(context, writer);
-            System.out.println(t);
+            Writer writer = new FileWriter(new File(outputFile));
+            Velocity.mergeTemplate(inputTemplate, "UTF-8", context, writer);
+            writer.flush();
+            writer.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

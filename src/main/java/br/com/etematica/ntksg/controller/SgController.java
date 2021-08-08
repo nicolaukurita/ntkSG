@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class sgController {
+public class SgController {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
@@ -21,7 +21,7 @@ public class sgController {
         Usuario customer = new Usuario();
         customer.setFirstName(first);
         customer.setLastName(last);
-        usuarioRepositorio.save(customer);
+
         return "Added new customer to repo!";
     }
 

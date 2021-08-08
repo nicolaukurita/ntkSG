@@ -70,4 +70,5 @@ create table campo (
 
 INSERT INTO usuario (id, first_name, last_name) VALUES (1,'Nicolau','Kurita');
 INSERT INTO projeto (id, nome) VALUES (1, 'ntkSGC');
+INSERT INTO tarefa (id, nome, projeto_id,situacao) VALUES (1, "teste",1,"PENDENTE");
 */
