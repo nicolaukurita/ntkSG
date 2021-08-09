@@ -60,7 +60,7 @@ public class Gerar {
             context.put("name", "World");
             context.put("projeto",projeto);
 
-            Writer writer = new FileWriter(new File(outputFile));
+            Writer writer = new FileWriter(outputFile);
             Velocity.mergeTemplate(inputTemplate, "UTF-8", context, writer);
             writer.flush();
             writer.close();
