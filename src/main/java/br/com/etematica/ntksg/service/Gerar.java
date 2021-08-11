@@ -1,7 +1,9 @@
 package br.com.etematica.ntksg.service;
 
+import br.com.etematica.ntksg.model.Entidade;
 import br.com.etematica.ntksg.model.Projeto;
 import br.com.etematica.ntksg.model.Tarefa;
+import br.com.etematica.ntksg.repository.CampoRepositorio;
 import br.com.etematica.ntksg.repository.ProjetoRepositorio;
 import br.com.etematica.ntksg.repository.TarefaRepositorio;
 import org.apache.velocity.VelocityContext;
@@ -26,6 +28,9 @@ public class Gerar {
     @Autowired
     TarefaRepositorio tarefaRepositorio;
 
+    @Autowired
+    CampoRepositorio campoRepositorio;
+
     public void GerarProjetos() {
         Set<Tarefa> tarefas = tarefaRepositorio.findTarefaBySituacao("PENDENTE");
         for (Tarefa tarefa :
@@ -49,12 +54,16 @@ public class Gerar {
     }
 
     private void GerarMeioProjeto(Projeto projeto) {
-        String inputTemplate = "templates/index.vm";
-        String outputFile = projeto.getNome() + ".java";
+        String inputTemplate = "templates/projeto/add.vm";
+        String outputFile = projeto.getNome() + ".html";
 
         VelocityContext context = new VelocityContext();
-        context.put("name", "World");
-        context.put("projeto",projeto);
+        for (Entidade entidade :
+                projeto.getEntidades()) {
+            context.put("projeto", projeto);
+            context.put("entidade", entidade);
+            context.put("campos", entidade.getCampos());
+        }
 
         gerarVelocity(inputTemplate, outputFile, context);
     }
