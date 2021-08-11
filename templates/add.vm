@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="add">
+#foreach( $campo in $campos )
+    <label>${campo.nome}:</label>
+    <input type="${campo.tipo}}" name="${campo.nome}">
+#end
+    <input type="submit">
+</form>
+</body>
+</html>
