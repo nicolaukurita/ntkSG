@@ -24,6 +24,6 @@ public class Projeto {
     @ManyToMany(mappedBy = "usuarioProjeto")
     Set<Usuario> projetoUsuario;
 
-    @OneToMany(mappedBy = "projeto")
+    @OneToMany(mappedBy = "projeto", fetch = FetchType.EAGER)
     private Set<Entidade> entidades;
 }
