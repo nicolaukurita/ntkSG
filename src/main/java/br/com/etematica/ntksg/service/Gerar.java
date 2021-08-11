@@ -52,13 +52,17 @@ public class Gerar {
         String inputTemplate = "templates/index.vm";
         String outputFile = projeto.getNome() + ".java";
 
+        VelocityContext context = new VelocityContext();
+        context.put("name", "World");
+        context.put("projeto",projeto);
+
+        gerarVelocity(inputTemplate, outputFile, context);
+    }
+
+    private void gerarVelocity(String inputTemplate, String outputFile, VelocityContext context) {
         try {
             VelocityEngine velocityEngine = new VelocityEngine();
             velocityEngine.init();
-
-            VelocityContext context = new VelocityContext();
-            context.put("name", "World");
-            context.put("projeto",projeto);
 
             Writer writer = new FileWriter(outputFile);
             Velocity.mergeTemplate(inputTemplate, "UTF-8", context, writer);
