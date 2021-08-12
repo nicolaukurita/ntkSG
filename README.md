@@ -15,6 +15,8 @@ Entity
 - Regulatory
   - LGPD (Lei geral de proteção de dados)
   - Audit
+  - SCIM 2.0
+  - oAuth
 
 Field properties
 - name
