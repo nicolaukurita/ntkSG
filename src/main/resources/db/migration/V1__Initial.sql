@@ -70,8 +70,9 @@ create table campo (
 
 INSERT INTO sgdb.usuario (first_name, last_name) VALUES ('Nicolau','Kurita');
 INSERT INTO sgdb.projeto (nome) VALUES ('ntkSGC');
-INSERT INTO sgdb.tarefa (nome, projeto_id,situacao) VALUES (1, "teste",1,"PENDENTE");
+INSERT INTO sgdb.tarefa (nome, projeto_id,situacao) VALUES ("teste",1,"PENDENTE");
 INSERT INTO `sgdb`.`entidade` (`id`, `alterar`, `consultar`, `descricao`, `excluir`, `incluir`, `nome`, `projeto_id`) VALUES ('1', b'1', b'1', 'Usuario', b'1', b'1', 'Usuario', b'1');
 INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('1', 'Id', 'text', '1');
 INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('2', 'Nome', 'text', '1');
+select * from sgdb.tarefa;
 */
