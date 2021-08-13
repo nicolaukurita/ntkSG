@@ -36,6 +36,8 @@ public class Gerar {
         for (Tarefa tarefa :
                 tarefas) {
             GerarProjeto(tarefa);
+            tarefa.setSituacao("COMPLETED");
+            tarefaRepositorio.save(tarefa);
         }
     }
 
