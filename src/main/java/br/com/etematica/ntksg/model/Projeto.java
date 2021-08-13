@@ -17,6 +17,7 @@ import java.util.Set;
 public class Projeto {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String nome;

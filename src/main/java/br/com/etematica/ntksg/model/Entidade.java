@@ -16,6 +16,7 @@ import java.util.Set;
 public class Entidade {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
