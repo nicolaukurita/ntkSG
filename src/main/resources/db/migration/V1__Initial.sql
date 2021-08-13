@@ -68,7 +68,10 @@ create table campo (
        foreign key (usuario_id)
        references usuario (id)
 
-INSERT INTO usuario (id, first_name, last_name) VALUES (1,'Nicolau','Kurita');
-INSERT INTO projeto (id, nome) VALUES (1, 'ntkSGC');
-INSERT INTO tarefa (id, nome, projeto_id,situacao) VALUES (1, "teste",1,"PENDENTE");
+INSERT INTO sgdb.usuario (first_name, last_name) VALUES ('Nicolau','Kurita');
+INSERT INTO sgdb.projeto (nome) VALUES ('ntkSGC');
+INSERT INTO sgdb.tarefa (nome, projeto_id,situacao) VALUES (1, "teste",1,"PENDENTE");
+INSERT INTO `sgdb`.`entidade` (`id`, `alterar`, `consultar`, `descricao`, `excluir`, `incluir`, `nome`, `projeto_id`) VALUES ('1', b'1', b'1', 'Usuario', b'1', b'1', 'Usuario', b'1');
+INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('1', 'Id', 'text', '1');
+INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('2', 'Nome', 'text', '1');
 */
