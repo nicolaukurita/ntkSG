@@ -60,13 +60,11 @@ public class Gerar {
         String outputFile = projeto.getNome() + ".html";
 
         VelocityContext context = new VelocityContext();
-        for (Entidade entidade :
-                projeto.getEntidades()) {
+        for (Entidade entidade : projeto.getEntidades()) {
             context.put("projeto", projeto);
             context.put("entidade", entidade);
             context.put("campos", entidade.getCampos());
         }
-
         gerarVelocity(inputTemplate, outputFile, context);
     }
 
