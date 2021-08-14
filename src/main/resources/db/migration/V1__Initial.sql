@@ -1,4 +1,6 @@
 /*
+CREATE SCHEMA `sgdb` ;
+
 create table campo (
          id integer not null,
           nome varchar(255),
