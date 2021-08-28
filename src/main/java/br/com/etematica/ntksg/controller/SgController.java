@@ -15,7 +15,10 @@ public class SgController {
 
     @Autowired
     private TarefaRepositorio tarefaRepositorio;
-
+@PostMapping("/login")
+public String login(@RequestParam String usuario, @RequestParam String senha){
+    return "OK";
+}
     @PostMapping("/add")
     public String addUsuario(@RequestParam String first, @RequestParam String last) {
         Usuario customer = new Usuario();
