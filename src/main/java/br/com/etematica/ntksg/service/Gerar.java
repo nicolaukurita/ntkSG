@@ -33,8 +33,7 @@ public class Gerar {
 
     public void GerarProjetos() {
         Set<Tarefa> tarefas = tarefaRepositorio.findTarefaBySituacao("PENDENTE");
-        for (Tarefa tarefa :
-                tarefas) {
+        for (Tarefa tarefa : tarefas) {
             GerarProjeto(tarefa);
             tarefa.setSituacao("COMPLETED");
             tarefaRepositorio.save(tarefa);
