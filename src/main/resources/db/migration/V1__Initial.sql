@@ -72,9 +72,24 @@ create table campo (
 
 INSERT INTO sgdb.usuario (first_name, last_name) VALUES ('Nicolau','Kurita');
 INSERT INTO sgdb.projeto (nome) VALUES ('ntkSGC');
-INSERT INTO sgdb.tarefa (nome, projeto_id,situacao) VALUES ("teste",1,"PENDENTE");
+INSERT INTO sgdb.tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
 INSERT INTO `sgdb`.`entidade` (`id`, `alterar`, `consultar`, `descricao`, `excluir`, `incluir`, `nome`, `projeto_id`) VALUES ('1', b'1', b'1', 'Usuario', b'1', b'1', 'Usuario', b'1');
 INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('1', 'Id', 'text', '1');
 INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('2', 'Nome', 'text', '1');
 select * from sgdb.tarefa;
+*/
+INSERT INTO usuario (first_name, last_name) VALUES ('Nicolau','Kurita');
+INSERT INTO projeto (nome,titulo, frontEndType) VALUES ('apm','Acme Product Management','ANGULAR');
+
+INSERT INTO tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
+INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, nome, projeto_id) VALUES (1, true, true, 'Usuario', true, true, 'Usuario', true);
+INSERT INTO campo (id, nome, tipo, entidade_id) VALUES (1, 'Id', 'text', 1);
+INSERT INTO campo (id, nome, tipo, entidade_id) VALUES (2, 'Nome', 'text', 1);
+
+/*
+select * from usuario     ;
+select * from projeto     ;
+select * from tarefa      ;
+select * from entidade    ;
+select * from campo       ;
 */
