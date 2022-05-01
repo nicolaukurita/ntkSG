@@ -21,6 +21,14 @@ public class Projeto {
     private Integer id;
 
     private String nome;
+    /**
+     * Page title - this will going to show at web page
+     */
+    private String titulo;
+    /**
+     * Type of front end. For instance ANGULAR
+     */
+    private String frontEndType;
 
     @ManyToMany(mappedBy = "usuarioProjeto")
     Set<Usuario> projetoUsuario;
