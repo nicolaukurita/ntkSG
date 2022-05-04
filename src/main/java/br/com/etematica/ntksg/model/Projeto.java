@@ -29,6 +29,10 @@ public class Projeto {
      * Type of front end. For instance ANGULAR
      */
     private String frontEndType;
+    /**
+     * Angular Application name
+     */
+    private String angularAppName;
 
     @ManyToMany(mappedBy = "usuarioProjeto")
     Set<Usuario> projetoUsuario;
