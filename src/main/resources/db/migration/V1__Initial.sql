@@ -79,8 +79,7 @@ INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('2', 'N
 select * from sgdb.tarefa;
 */
 INSERT INTO usuario (first_name, last_name) VALUES ('Nicolau','Kurita');
-INSERT INTO projeto (nome,titulo, frontEndType) VALUES ('apm','Acme Product Management','ANGULAR');
-
+INSERT INTO projeto (nome,titulo, FRONT_END_TYPE ,ANGULAR_APP_NAME ) VALUES ('apm','Acme Product Management','ANGULAR','pm');
 INSERT INTO tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
 INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, nome, projeto_id) VALUES (1, true, true, 'Usuario', true, true, 'Usuario', true);
 INSERT INTO campo (id, nome, tipo, entidade_id) VALUES (1, 'Id', 'text', 1);
