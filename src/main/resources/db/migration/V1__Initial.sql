@@ -77,9 +77,17 @@ INSERT INTO `sgdb`.`entidade` (`id`, `alterar`, `consultar`, `descricao`, `exclu
 INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('1', 'Id', 'text', '1');
 INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('2', 'Nome', 'text', '1');
 select * from sgdb.tarefa;
+update projeto
+set PROJECT_PATH ='h:\\lixo'
+;
+update tarefa
+set SITUACAO ='PENDENTE'
+;
+
 */
 INSERT INTO usuario (first_name, last_name) VALUES ('Nicolau','Kurita');
-INSERT INTO projeto (nome,titulo, FRONT_END_TYPE ,ANGULAR_APP_NAME ) VALUES ('apm','Acme Product Management','ANGULAR','pm');
+INSERT INTO projeto (nome,titulo, FRONT_END_TYPE ,ANGULAR_APP_NAME, PROJECT_PATH)
+VALUES ('apm','Acme Product Management','ANGULAR','pm','h:\\lixo');
 INSERT INTO tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
 INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, nome, projeto_id) VALUES (1, true, true, 'Usuario', true, true, 'Usuario', true);
 INSERT INTO campo (id, nome, tipo, entidade_id) VALUES (1, 'Id', 'text', 1);

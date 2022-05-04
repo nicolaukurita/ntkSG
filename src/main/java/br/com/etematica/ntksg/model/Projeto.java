@@ -33,6 +33,10 @@ public class Projeto {
      * Angular Application name
      */
     private String angularAppName;
+    /**
+     * project path
+     */
+    private String projectPath;
 
     @ManyToMany(mappedBy = "usuarioProjeto")
     Set<Usuario> projetoUsuario;

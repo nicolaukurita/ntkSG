@@ -56,7 +56,7 @@ public class Gerar {
 
     private void GerarMeioProjeto(Projeto projeto) {
         String inputTemplate = "templates/projeto/add.vm";
-        String outputFile = projeto.getNome() + ".html";
+        String outputFile = projeto.getProjectPath() + "/" + projeto.getNome() + ".html";
 
         VelocityContext context = new VelocityContext();
         for (Entidade entidade : projeto.getEntidades()) {
