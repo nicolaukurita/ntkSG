@@ -8,6 +8,7 @@ import br.com.etematica.ntksg.repository.CampoRepositorio;
 import br.com.etematica.ntksg.repository.ProjetoRepositorio;
 import br.com.etematica.ntksg.repository.TarefaRepositorio;
 import br.com.etematica.ntksg.repository.TemplateRepositorio;
+import br.com.etematica.ntksg.util.StrSubstitutor;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
@@ -20,6 +21,8 @@ import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -68,20 +71,31 @@ public class Gerar {
 
     private void GerarMeioProjeto(Projeto projeto, Template template) {
         String inputTemplate = template.getInputTemplatePath();
-        String outputFile = projeto.getProjectPath() + "/" + template.getOutputPath() + "/" + template.getFileName();
-        try {
-            Files.createDirectories(Paths.get(projeto.getProjectPath() + "/" + template.getOutputPath()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String outputPath = projeto.getProjectPath() + "/" + template.getOutputPath();
+        String outputFile = outputPath + "/" + template.getFileName();
 
         VelocityContext context = new VelocityContext();
+        context.put("projeto", projeto);
+
         for (Entidade entidade : projeto.getEntidades()) {
-            context.put("projeto", projeto);
             context.put("entidade", entidade);
+
+            Map<String, String> map = new HashMap<>();
+            map.put("entidade.nome", entidade.getNome().toLowerCase());
+            map.put("tipo", "list");
+
+            StrSubstitutor strSubstitutor = new StrSubstitutor(map);
+            String componentOutputPath = strSubstitutor.replace(outputPath);
+            try {
+                Files.createDirectories(Paths.get(componentOutputPath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             context.put("campos", entidade.getCampos());
+
+            String componentOutputFile = strSubstitutor.replace(outputFile);
+            gerarVelocity(inputTemplate, componentOutputFile, context);
         }
-        gerarVelocity(inputTemplate, outputFile, context);
     }
 
     private void gerarVelocity(String inputTemplate, String outputFile, VelocityContext context) {

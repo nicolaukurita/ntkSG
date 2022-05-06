@@ -91,12 +91,22 @@ INSERT INTO tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
 INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, nome, projeto_id) VALUES (1, true, true, 'Usuario', true, true, 'Usuario', true);
 INSERT INTO campo (id, nome, tipo, entidade_id) VALUES (1, 'Id', 'text', 1);
 INSERT INTO campo (id, nome, tipo, entidade_id) VALUES (2, 'Nome', 'text', 1);
-INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH )
+INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
 VALUES('html add for component','templates/projeto/add.vm','angular/src/app','teste.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
 VALUES('application component','templates/projeto/component.vm', 'angular/src/app', 'app.component.ts')
-
+INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
+VALUES('html list for component','templates/entidade/component.html','angular/src/${entidade.nome}','${entidade.nome}-${tipo}.component.html');
 /*
+update TEMPLATE
+set OUTPUT_PATH ='angular/src/${entidade.nome}',
+FILE_NAME ='${entidade.nome}-${tipo}.component.html'
+where id=3;
+update ENTIDADE
+set DESCRICAO ='Product'
+,NOME ='Product'
+;
+
 select * from usuario     ;
 select * from projeto     ;
 select * from tarefa      ;
