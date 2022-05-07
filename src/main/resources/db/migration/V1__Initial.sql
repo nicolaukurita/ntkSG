@@ -80,7 +80,7 @@ select * from sgdb.tarefa;
 update projeto
 set PROJECT_PATH ='h:/lixo'
 ;
-update tarefa set SITUACAO ='PENDENTE';
+
 ;
 
 */
@@ -89,14 +89,22 @@ INSERT INTO projeto (nome,titulo, FRONT_END_TYPE ,ANGULAR_APP_NAME, PROJECT_PATH
 VALUES ('apm','Acme Product Management','ANGULAR','pm','h:/lixo');
 INSERT INTO tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
 INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, nome, projeto_id) VALUES (1, true, true, 'Usuario', true, true, 'Usuario', true);
-INSERT INTO campo (id, nome, tipo, entidade_id) VALUES (1, 'Id', 'text', 1);
-INSERT INTO campo (id, nome, tipo, entidade_id) VALUES (2, 'Nome', 'text', 1);
+delete from campo;
+INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (1, 'Show Image', 'button', 1, 10, 'I');
+INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (2, 'Product', 'text', 1, 20, 'IO');
+INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (3, 'Code', 'text', 1, 30, 'IO');
+INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (4, 'Available', 'text', 1, 40, 'IO');
+INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (5, 'Price', 'text', 1, 50, 'IO');
+INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (6, '5 Star Rating', 'text', 1, 60, 'IO');
+
+
+
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
 VALUES('html add for component','templates/projeto/add.vm','angular/src/app','teste.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
 VALUES('application component','templates/projeto/component.vm', 'angular/src/app', 'app.component.ts')
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('html list for component','templates/entidade/component.html','angular/src/${entidade.nome}','${entidade.nome}-${tipo}.component.html');
+VALUES('html list for component','templates/entidade/component-list.html','angular/src/${entidade.nome}','${entidade.nome}-${tipo}.component.html');
 /*
 update TEMPLATE
 set OUTPUT_PATH ='angular/src/${entidade.nome}',
@@ -106,6 +114,13 @@ update ENTIDADE
 set DESCRICAO ='Product'
 ,NOME ='Product'
 ;
+
+update TEMPLATE
+set INPUT_TEMPLATE_PATH ='templates/entidade/component-list.html'
+,FILE_NAME ='${entidade.nome}-${tipo}.component.html'
+where id =3;
+
+update tarefa set SITUACAO ='PENDENTE';
 
 select * from usuario     ;
 select * from projeto     ;

@@ -33,5 +33,6 @@ public class Entidade {
     private boolean consultar;
 
     @OneToMany(mappedBy = "entidade",fetch = FetchType.EAGER)
+    @OrderBy("fieldOrder")
     private Set<Campo> campos;
 }

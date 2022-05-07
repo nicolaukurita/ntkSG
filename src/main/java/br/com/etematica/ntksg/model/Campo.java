@@ -24,4 +24,15 @@ public class Campo {
 
     private String nome;
     private String tipo;
+    /**
+     * fileds order in screen
+     */
+    private Integer fieldOrder;
+    /**
+     * field type.
+     * Must be I, for input; O for output; or IO for input and output
+     * Input fields only will show at screen, and it will not be stored
+     * Output fields will exist only at database
+     */
+    private String inputOutputType;
 }
