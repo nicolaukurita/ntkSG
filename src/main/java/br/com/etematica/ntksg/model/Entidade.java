@@ -23,7 +23,14 @@ public class Entidade {
     @JoinColumn(name = "projeto_id", nullable = false)
     private Projeto projeto;
 
+    /**
+     * name in singular
+     */
     private String nome;
+    /**
+     * name in plural
+     */
+    private String pluralName;
 
     private String descricao;
 

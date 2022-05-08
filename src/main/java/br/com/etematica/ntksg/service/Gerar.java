@@ -76,6 +76,7 @@ public class Gerar {
 
         VelocityContext context = new VelocityContext();
         context.put("projeto", projeto);
+        context.put("entidades", projeto.getEntidades());
 
         for (Entidade entidade : projeto.getEntidades()) {
             context.put("entidade", entidade);

@@ -88,7 +88,9 @@ INSERT INTO usuario (first_name, last_name) VALUES ('Nicolau','Kurita');
 INSERT INTO projeto (nome,titulo, FRONT_END_TYPE ,ANGULAR_APP_NAME, PROJECT_PATH)
 VALUES ('apm','Acme Product Management','ANGULAR','pm','h:/lixo');
 INSERT INTO tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
-INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, nome, projeto_id) VALUES (1, true, true, 'Usuario', true, true, 'Usuario', true);
+INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, nome, projeto_id, PLURAL_NAME)
+VALUES (1, true, true, 'Usuario', true, true, 'Usuario', true, 'Products');
+
 delete from campo;
 INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (1, 'Show Image', 'button', 1, 10, 'I');
 INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (2, 'Product', 'text', 1, 20, 'IO');
@@ -98,13 +100,15 @@ INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) 
 INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (6, '5 Star Rating', 'text', 1, 60, 'IO');
 
 
-
+delete from TEMPLATE;
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
-VALUES('html add for component','templates/projeto/add.vm','angular/src/app','teste.html');
+VALUES('application html','templates/projeto/component.html','angular/src/app','app.component.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
-VALUES('application component','templates/projeto/component.vm', 'angular/src/app', 'app.component.ts')
+VALUES('application ts component','templates/projeto/component.vm', 'angular/src/app', 'app.component.ts')
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('html list for component','templates/entidade/component-list.html','angular/src/${entidade.nome}','${entidade.nome}-${tipo}.component.html');
+INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
+VALUES('ts list for component','templates/entidade/component-list.ts','angular/src/${entidade.nome}','${entidade.nome}-${tipo}.component.ts');
 /*
 update TEMPLATE
 set OUTPUT_PATH ='angular/src/${entidade.nome}',

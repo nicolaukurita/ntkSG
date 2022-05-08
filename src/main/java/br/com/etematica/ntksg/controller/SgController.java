@@ -36,9 +36,10 @@ public String login(@RequestParam String usuario, @RequestParam String senha){
     @GetMapping("/gerar/{id}")
     public Tarefa findUsuarioById(@PathVariable Integer id) {
         Tarefa tarefa = new Tarefa();
-        tarefa.setId(id);
+        tarefa.setProjetoId(id);
         tarefa.setNome("gerar");
         tarefa.setSituacao("PENDENTE");
+
         return tarefaRepositorio.save(tarefa);
     }
 }
