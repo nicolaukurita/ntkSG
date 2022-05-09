@@ -23,6 +23,11 @@ public class Campo {
     private Entidade entidade;
 
     private String nome;
+    /**
+     * display name. The name will be shown at UI
+     */
+    private String displayName;
+
     private String tipo;
     /**
      * fileds order in screen

@@ -93,23 +93,27 @@ VALUES (1, true, true, 'Usuario', true, true, 'Usuario', true, 'Products');
 
 delete from campo;
 INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (1, 'Show Image', 'button', 1, 10, 'I');
-INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (2, 'Product', 'text', 1, 20, 'IO');
-INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (3, 'Code', 'text', 1, 30, 'IO');
-INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (4, 'Available', 'text', 1, 40, 'IO');
-INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (5, 'Price', 'text', 1, 50, 'IO');
-INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (6, '5 Star Rating', 'text', 1, 60, 'IO');
+INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (2, 'productName', 'Product', 'text', 1, 20, 'IO');
+INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (3, 'productCode', 'Code', 'text', 1, 30, 'IO');
+INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (4, 'releaseDate', 'Available', 'text', 1, 40, 'IO');
+INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (5, 'price', 'Price', 'text', 1, 50, 'IO');
+INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (6, 'starRating', '5 Star Rating', 'text', 1, 60, 'IO');
 
 
+
+/*
 delete from TEMPLATE;
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
 VALUES('application html','templates/projeto/component.html','angular/src/app','app.component.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
-VALUES('application ts component','templates/projeto/component.vm', 'angular/src/app', 'app.component.ts')
+VALUES('application ts component','templates/projeto/component.vm', 'angular/src/app', 'app.component.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('html list for component','templates/entidade/component-list.html','angular/src/${entidade.nome}','${entidade.nome}-${tipo}.component.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('ts list for component','templates/entidade/component-list.ts','angular/src/${entidade.nome}','${entidade.nome}-${tipo}.component.ts');
-/*
+INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
+VALUES('application module ts','templates/projeto/app.module.ts','angular/src/app','app.module.ts');
+
 update TEMPLATE
 set OUTPUT_PATH ='angular/src/${entidade.nome}',
 FILE_NAME ='${entidade.nome}-${tipo}.component.html'
@@ -126,6 +130,7 @@ where id =3;
 
 update tarefa set SITUACAO ='PENDENTE';
 
+delete from tarefa;
 select * from usuario     ;
 select * from projeto     ;
 select * from tarefa      ;

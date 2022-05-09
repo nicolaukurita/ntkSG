@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table">
+        <table class="table" *ngIf="${entidade.pluralName.toLowerCase()}.length">
             <thead>
             <tr>
 #foreach( $campo in $campos )
@@ -33,7 +33,15 @@
             </tr>
             </thead>
             <tbody>
-
+            <tr *ngFor="let ${entidade.nome.toLowerCase()} of ${entidade.pluralName.toLowerCase()}">
+#foreach( $campo in $campos )
+#if ($campo.inputOutputType == 'I')
+                <td></td>
+#else
+                <td>{{${entidade.nome.toLowerCase()}.${campo.nome}}}</td>
+#end
+#end
+            </tr>
             </tbody>
         </table>
     </div>
