@@ -55,7 +55,7 @@
                          margin=${campo.imageMargin}>
                 </td>
 #else
-                <td>{{${entidade.nome.toLowerCase()}.${campo.nome}}}</td>
+                <td>{{${entidade.nome.toLowerCase()}.${campo.nome}#if ($campo.outputFormat)${campo.outputFormat}#end}}</td>
 #end
 #end
             </tr>

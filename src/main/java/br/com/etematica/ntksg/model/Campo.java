@@ -51,6 +51,13 @@ public class Campo {
     /**
      * fields order in screen
      */
+    /**
+     * output format
+     */
+    private String outputFormat;
+    /**
+     * define the field order in output
+     */
     private Integer fieldOrder;
     /**
      * field type.
