@@ -19,7 +19,7 @@ public class Campo {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="entidade_id",nullable = false)
+    @JoinColumn(name = "entidade_id", nullable = false)
     private Entidade entidade;
 
     private String nome;
@@ -27,10 +27,29 @@ public class Campo {
      * display name. The name will be shown at UI
      */
     private String displayName;
-
+    /**
+     * hasFilter is true if field has filtered
+     */
+    private Boolean hasFilter;
+    /**
+     * imageWidth for images
+     */
+    private Integer imageWidth;
+    /**
+     * imageMargin for images
+     */
+    private Integer imageMargin;
+    /**
+     * kind of fields
+     * can be imageUrl if it is an url of image
+     */
     private String tipo;
     /**
-     * fileds order in screen
+     * imageTitle. must be field name
+     */
+    private String imageTitle;
+    /**
+     * fields order in screen
      */
     private Integer fieldOrder;
     /**
