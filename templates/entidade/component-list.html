@@ -2,11 +2,22 @@
     <div class='card-header'>
         ${entidade.nome} List
     </div>
+#set ($hasFilter = false)
+#foreach( $campo in $campos )
+#if ($campo.hasFilter)
+#set ($hasFilter = true)
+#end
+#end
+#if ($hasFilter)
     <div class="card-body">
         <div class="row">
             <div class="col-md-2">Filter by:</div>
             <div class="col-md-4">
-                <input type="text" />
+#foreach( $campo in $campos )
+#if ($campo.hasFilter)
+                <input type="text" [(ngModel)]="listFilter${campo.nome}"/>
+#end
+#end
             </div>
         </div>
         <div class="row">
@@ -15,19 +26,20 @@
             </div>
         </div>
     </div>
+#end
     <div class="table-responsive">
         <table class="table" *ngIf="${entidade.pluralName.toLowerCase()}.length">
             <thead>
             <tr>
 #foreach( $campo in $campos )
-#if ($campo.inputOutputType == 'I')
+#if ($campo.tipo == 'imageUrl')
                 <th>
                     <button class="btn btn-primary">
-                        ${campo.nome}
+                        ${campo.displayName}
                     </button>
                 </th>
 #else
-                <th>${campo.nome}</th>
+                <th>${campo.displayName}</th>
 #end
 #end
             </tr>
@@ -35,8 +47,13 @@
             <tbody>
             <tr *ngFor="let ${entidade.nome.toLowerCase()} of ${entidade.pluralName.toLowerCase()}">
 #foreach( $campo in $campos )
-#if ($campo.inputOutputType == 'I')
-                <td></td>
+#if ($campo.tipo == 'imageUrl')
+                <td>
+                    <img [src]="${entidade.nome.toLowerCase()}.${campo.nome}"
+                         [title]="${entidade.nome.toLowerCase()}.${campo.imageTitle}"
+                         width=${campo.imageWidth}
+                         margin=${campo.imageMargin}>
+                </td>
 #else
                 <td>{{${entidade.nome.toLowerCase()}.${campo.nome}}}</td>
 #end

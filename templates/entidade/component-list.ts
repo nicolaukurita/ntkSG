@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
 })
 export class ${entidade.Nome}ListComponent {
     pageTitle: string = '${entidade.nome} List';
+#foreach( $campo in $campos)
+#if ($campo.hasFilter == true)
+    listFilter${campo.nome}: string = '';
+#end
+#end
     ${entidade.pluralName.toLowerCase()}: any[] = [
       {
         "productId": 2,

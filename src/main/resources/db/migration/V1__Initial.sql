@@ -92,8 +92,8 @@ INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, nome,
 VALUES (1, true, true, 'Usuario', true, true, 'Usuario', true, 'Products');
 
 delete from campo;
-INSERT INTO campo (id, nome, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (1, 'Show Image', 'button', 1, 10, 'I');
-INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (2, 'productName', 'Product', 'text', 1, 20, 'IO');
+INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, IMAGE_MARGIN, IMAGE_WIDTH, IMAGE_TITLE) VALUES (1, 'imageUrl', 'Show Image', 'imageUrl', 1, 10, 'IO', 2, 50, 'productName');
+INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, HAS_FILTER) VALUES (2, 'productName', 'Product', 'text', 1, 20, 'IO', TRUE);
 INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (3, 'productCode', 'Code', 'text', 1, 30, 'IO');
 INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (4, 'releaseDate', 'Available', 'text', 1, 40, 'IO');
 INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (5, 'price', 'Price', 'text', 1, 50, 'IO');
