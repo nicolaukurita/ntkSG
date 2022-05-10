@@ -24,13 +24,21 @@ public class Entidade {
     private Projeto projeto;
 
     /**
-     * name in singular
+     * name in singular, upper case
      */
     private String nome;
     /**
-     * name in plural
+     * name in plural, upper case
      */
     private String pluralName;
+    /**
+     * name in singular, lower case
+     */
+    private String nameLower;
+    /**
+     * name in plural, lower case
+     */
+    private String pluralNameLower;
 
     private String descricao;
 

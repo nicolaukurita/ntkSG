@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { I${entidade.nome} } from './${entidade.nameLower}'
 
 @Component({
     selector: '${projeto.angularAppName}-${entidade.pluralName.toLowerCase()}',
     templateUrl: './${entidade.nome.toLowerCase()}-list.component.html'
 })
-export class ${entidade.Nome}ListComponent {
+export class ${entidade.Nome}ListComponent implements OnInit{
     pageTitle: string = '${entidade.nome} List';
 #foreach( $campo in $campos)
 #if ($campo.hasFilter == true)
     listFilter${campo.nome}: string = '';
 #end
 #end
-    ${entidade.pluralName.toLowerCase()}: any[] = [
+    ${entidade.pluralName.toLowerCase()}: I${entidade.nome}[] = [
       {
         "productId": 2,
         "productName": "Garden Cart",
@@ -33,4 +34,8 @@ export class ${entidade.Nome}ListComponent {
         "imageUrl": "assets/images/hammer.png"
       }
     ];
+
+    ngOnInit(): void {
+        console.log('In ngOnInit');
+    }
 }
