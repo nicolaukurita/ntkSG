@@ -38,3 +38,6 @@ docker exec -it mysql1 mysql -uroot -p
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
 update mysql.user set host = '%' where user='root';
 docker restart mysql1
+
+#To do
+multiple fields filter per entity

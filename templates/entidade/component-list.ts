@@ -9,10 +9,25 @@ export class ${entidade.Nome}ListComponent implements OnInit{
     pageTitle: string = '${entidade.nome} List';
 #foreach( $campo in $campos)
 #if ($campo.hasFilter == true)
-    listFilter${campo.nome}: string = '';
+  private _listFilter${campo.nome} = '';
+  get listFilter${campo.nome}(): string {
+    return this._listFilter${campo.nome};
+  }
+  set listFilter${campo.nome}(value: string) {
+    this._listFilter${campo.nome}= value;
+    this.filtered${entidade.pluralName} = this.performFilter(value);
+  }
+
+  filtered${entidade.pluralName}: I${entidade.nome}[] = [];
+
+    performFilter(filterBy: string): I${entidade.nome}[] {
+      filterBy = filterBy.toLocaleLowerCase();
+      return this.${entidade.pluralNameLower}.filter((${entidade.nameLower}: I${entidade.nome}) =>
+        ${entidade.nameLower}.${campo.nome}.toLocaleLowerCase().includes(filterBy));
+    }
 #end
 #end
-    ${entidade.pluralName.toLowerCase()}: I${entidade.nome}[] = [
+    ${entidade.pluralNameLower}: I${entidade.nome}[] = [
       {
         "productId": 2,
         "productName": "Garden Cart",
@@ -36,6 +51,11 @@ export class ${entidade.Nome}ListComponent implements OnInit{
     ];
 
     ngOnInit(): void {
+#foreach( $campo in $campos)
+#if ($campo.hasFilter == true)
+        this.listFilter${campo.nome}='';
+#end
+#end
         console.log('In ngOnInit');
     }
 }

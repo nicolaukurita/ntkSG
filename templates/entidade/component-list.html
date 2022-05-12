@@ -38,14 +38,14 @@
                         ${campo.displayName}
                     </button>
                 </th>
-#else
+#elseif ($campo.inputOutputType == 'IO' || $campo.inputOutputType == 'I')
                 <th>${campo.displayName}</th>
 #end
 #end
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let ${entidade.nome.toLowerCase()} of ${entidade.pluralName.toLowerCase()}">
+            <tr *ngFor="let ${entidade.nome.toLowerCase()} of filtered${entidade.pluralName}">
 #foreach( $campo in $campos )
 #if ($campo.tipo == 'imageUrl')
                 <td>
@@ -54,7 +54,7 @@
                          width=${campo.imageWidth}
                          margin=${campo.imageMargin}>
                 </td>
-#else
+#elseif ($campo.inputOutputType == 'IO' || $campo.inputOutputType == 'I')
                 <td>{{${entidade.nome.toLowerCase()}.${campo.nome}#if ($campo.outputFormat)${campo.outputFormat}#end}}</td>
 #end
 #end
