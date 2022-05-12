@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { I${entidade.nome} } from './${entidade.nameLower}';
 import { ${entidade.nome}Service } from './${entidade.nameLower}.service';
 @Component({
@@ -7,6 +8,9 @@ import { ${entidade.nome}Service } from './${entidade.nameLower}.service';
 })
 export class ${entidade.Nome}ListComponent implements OnInit{
     pageTitle: string = '${entidade.nome} List';
+      errorMessage = '';
+sub!: Subscription;
+
 #foreach( $campo in $campos)
 #if ($campo.hasFilter == true)
   private _listFilter${campo.nome} = '';
@@ -31,14 +35,18 @@ export class ${entidade.Nome}ListComponent implements OnInit{
 
     ${entidade.pluralNameLower}: I${entidade.nome}[] = [];
 
-    ngOnInit(): void {
-#foreach( $campo in $campos)
-#if ($campo.hasFilter == true)
-        this.listFilter${campo.nome}='';
-#end
-#end
-        this.${entidade.pluralNameLower} = this.${entidade.nameLower}Service.get${entidade.pluralName}();
+  ngOnInit(): void {
+    this.sub = this.${entidade.nameLower}Service.get${entidade.pluralName}().subscribe({
+      next: ${entidade.nameLower} => {
+        this.${entidade.pluralNameLower} = ${entidade.nameLower};
         this.filtered${entidade.pluralName} = this.${entidade.pluralNameLower};
-        console.log('In ngOnInit');
+      },
+      error: err => this.errorMessage = err
+        });
     }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
 }
