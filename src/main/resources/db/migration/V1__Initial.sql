@@ -121,6 +121,11 @@ INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('component interface ts','templates/entidade/interface.ts','angular/src/${entidade.nameLower}','${entidade.nameLower}.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('component service ts','templates/entidade/service.ts','angular/src/${entidade.nameLower}','${entidade.nameLower}.service.ts');
+INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
+VALUES('welcome component ts','templates/projeto/welcome.component.ts','angular/src/home','welcome.component.ts');
+INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
+VALUES('welcome component html','templates/projeto/welcome.component.html','angular/src/home','welcome.component.html');
+
 
 update TEMPLATE
 set OUTPUT_PATH ='angular/src/${entidade.nome}',
