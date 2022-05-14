@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { I${entidade.nome} } from './${entidade.nameLower}';
 import { ${entidade.nome}Service } from './${entidade.nameLower}.service';
 @Component({
-    selector: '${projeto.angularAppName}-${entidade.pluralNameLower}',
     templateUrl: './${entidade.nome.toLowerCase()}-list.component.html'
 })
 export class ${entidade.Nome}ListComponent implements OnInit{

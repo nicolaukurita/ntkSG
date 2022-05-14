@@ -1,5 +1,13 @@
-<div><h1>{{pageTitle}}</h1>
+<nav class='navbar navbar-expand navbar-light bg-light'>
+    <a class='navbar-brand'>{{pageTitle}}</a>
+    <ul class='nav nav-pills'>
+        <li><a class='nav-link' routerLinkActive='active' routerLink='/welcome'>Home</a></li>
 #foreach( $entidade in $entidades )
-    <${projeto.angularAppName}-${entidade.pluralName.toLowerCase()}></${projeto.angularAppName}-${entidade.pluralName.toLowerCase()}>
+    <li><a class='nav-link' routerLinkActive='active' routerLink='/${entidade.pluralNameLower}'>${entidade.pluralName} List</a></li>
 #end
+
+    </ul>
+</nav>
+<div class='container'>
+    <router-outlet></router-outlet>
 </div>

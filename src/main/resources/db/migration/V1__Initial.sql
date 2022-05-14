@@ -110,11 +110,15 @@ delete from TEMPLATE;
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
 VALUES('application html','templates/projeto/component.html','angular/src/app','app.component.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
-VALUES('application ts component','templates/projeto/component.vm', 'angular/src/app', 'app.component.ts');
+VALUES('application ts component','templates/projeto/component.ts', 'angular/src/app', 'app.component.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('html list for component','templates/entidade/component-list.html','angular/src/${entidade.nameLower}','${entidade.nameLower}-${tipo}.component.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('ts list for component','templates/entidade/component-list.ts','angular/src/${entidade.nameLower}','${entidade.nameLower}-${tipo}.component.ts');
+INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
+VALUES('html detail for component','templates/entidade/detail.component.html','angular/src/${entidade.nameLower}','${entidade.nameLower}-detail.component.html');
+INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
+VALUES('ts detail for component','templates/entidade/detail.component.ts','angular/src/${entidade.nameLower}','${entidade.nameLower}-detail.component.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('application module ts','templates/projeto/app.module.ts','angular/src/app','app.module.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
