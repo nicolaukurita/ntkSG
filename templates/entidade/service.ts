@@ -11,7 +11,7 @@ export class ${entidade.singularNameUpper}Service {
     private ${entidade.nameLower}Url = 'api/${entidade.pluralNameLower}/${entidade.pluralNameLower}.json';
     constructor(private http: HttpClient) { }
 
-    get${entidade.pluralName}(): Observable<I${entidade.singularNameUpper}[]> {
+    get${entidade.pluralNameUpper}(): Observable<I${entidade.singularNameUpper}[]> {
     return this.http.get<I${entidade.singularNameUpper}[]>(this.${entidade.nameLower}Url)
           .pipe(
             tap(data => console.log('All: ', JSON.stringify(data))),
@@ -20,7 +20,7 @@ export class ${entidade.singularNameUpper}Service {
     }
 
   get${entidade.singularNameUpper}(id: number): Observable<I${entidade.singularNameUpper} | undefined> {
-    return this.get${entidade.pluralName}()
+    return this.get${entidade.pluralNameUpper}()
       .pipe(
         map((${entidade.pluralNameLower}: I${entidade.singularNameUpper}[]) => ${entidade.pluralNameLower}.find(p => p.${entidade.nameLower}Id === id))
       );

@@ -3,7 +3,7 @@
     <ul class='nav nav-pills'>
         <li><a class='nav-link' routerLinkActive='active' routerLink='/welcome'>Home</a></li>
 #foreach( $entidade in $entidades )
-    <li><a class='nav-link' routerLinkActive='active' routerLink='/${entidade.pluralNameLower}'>${entidade.pluralName} List</a></li>
+    <li><a class='nav-link' routerLinkActive='active' routerLink='/${entidade.pluralNameLower}'>${entidade.pluralNameUpper} List</a></li>
 #end
 
     </ul>

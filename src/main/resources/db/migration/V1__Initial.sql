@@ -90,8 +90,8 @@ VALUES ('apm','Acme Product Management','ANGULAR','pm','h:/lixo');
 INSERT INTO tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
 
 delete from entidade;
-INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, SINGULAR_NAME_UPPER, projeto_id, PLURAL_NAME, NAME_LOWER, PLURAL_NAME_LOWER )
-VALUES (1, true, true, 'Product', true, true, 'Product', true, 'Products','product','products');
+INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, SINGULAR_NAME_UPPER, projeto_id, PLURAL_NAME_UPPER, NAME_LOWER, PLURAL_NAME_LOWER )
+VALUES (1, true, true, 'Product', true, true, 'Product', 1, 'Products','product','products');
 
 delete from campo;
 INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (1, 'productId', 'Product Id', 'number', 1, 10, 'O');

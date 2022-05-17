@@ -30,7 +30,7 @@ public class Entidade {
     /**
      * name in plural, upper case
      */
-    private String pluralName;
+    private String pluralNameUpper;
     /**
      * name in singular, lower case
      */
