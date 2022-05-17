@@ -2,17 +2,17 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map, tap } from 'rxjs/operators';
-import { I${entidade.singularNameUpper} } from "./${entidade.nameLower}";
+import { I${entidade.singularNameUpper} } from "./${entidade.singularNameLower}";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ${entidade.singularNameUpper}Service {
-    private ${entidade.nameLower}Url = 'api/${entidade.pluralNameLower}/${entidade.pluralNameLower}.json';
+    private ${entidade.singularNameLower}Url = 'api/${entidade.pluralNameLower}/${entidade.pluralNameLower}.json';
     constructor(private http: HttpClient) { }
 
     get${entidade.pluralNameUpper}(): Observable<I${entidade.singularNameUpper}[]> {
-    return this.http.get<I${entidade.singularNameUpper}[]>(this.${entidade.nameLower}Url)
+    return this.http.get<I${entidade.singularNameUpper}[]>(this.${entidade.singularNameLower}Url)
           .pipe(
             tap(data => console.log('All: ', JSON.stringify(data))),
             catchError(this.handleError)
@@ -22,7 +22,7 @@ export class ${entidade.singularNameUpper}Service {
   get${entidade.singularNameUpper}(id: number): Observable<I${entidade.singularNameUpper} | undefined> {
     return this.get${entidade.pluralNameUpper}()
       .pipe(
-        map((${entidade.pluralNameLower}: I${entidade.singularNameUpper}[]) => ${entidade.pluralNameLower}.find(p => p.${entidade.nameLower}Id === id))
+        map((${entidade.pluralNameLower}: I${entidade.singularNameUpper}[]) => ${entidade.pluralNameLower}.find(p => p.${entidade.singularNameLower}Id === id))
       );
   }
 

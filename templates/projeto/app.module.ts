@@ -5,9 +5,9 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 #foreach( $entidade in $entidades )
-import { ${entidade.singularNameUpper}ListComponent } from 'src/${entidade.nameLower}/${entidade.nameLower}-list.component';
-import { ${entidade.singularNameUpper}DetailComponent } from 'src/${entidade.nameLower}/${entidade.nameLower}-detail.component';
-import { ${entidade.singularNameUpper}DetailGuard } from 'src/${entidade.nameLower}/${entidade.nameLower}-detail.guard';
+import { ${entidade.singularNameUpper}ListComponent } from 'src/${entidade.singularNameLower}/${entidade.singularNameLower}-list.component';
+import { ${entidade.singularNameUpper}DetailComponent } from 'src/${entidade.singularNameLower}/${entidade.singularNameLower}-detail.component';
+import { ${entidade.singularNameUpper}DetailGuard } from 'src/${entidade.singularNameLower}/${entidade.singularNameLower}-detail.guard';
 #end
 import { FormsModule } from '@angular/forms';
 import { WelcomeComponent } from 'src/home/welcome.component';

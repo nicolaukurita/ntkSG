@@ -34,7 +34,7 @@ public class Entidade {
     /**
      * name in singular, lower case
      */
-    private String nameLower;
+    private String singularNameLower;
     /**
      * name in plural, lower case
      */

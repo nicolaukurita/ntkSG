@@ -83,7 +83,7 @@ public class Gerar {
 
             Map<String, String> map = new HashMap<>();
             map.put("entidade.singularNameUpper", entidade.getSingularNameUpper());
-            map.put("entidade.nameLower", entidade.getNameLower());
+            map.put("entidade.singularNameLower", entidade.getSingularNameLower());
             map.put("tipo", "list");
 
             StrSubstitutor strSubstitutor = new StrSubstitutor(map);

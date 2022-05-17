@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { I${entidade.singularNameUpper} } from './${entidade.nameLower}';
-import { ${entidade.singularNameUpper}Service } from './${entidade.nameLower}.service';
+import { I${entidade.singularNameUpper} } from './${entidade.singularNameLower}';
+import { ${entidade.singularNameUpper}Service } from './${entidade.singularNameLower}.service';
 
 @Component({
-  templateUrl: './${entidade.nameLower}-detail.component.html',
-  styleUrls: ['./${entidade.nameLower}-detail.component.css']
+  templateUrl: './${entidade.singularNameLower}-detail.component.html',
+  styleUrls: ['./${entidade.singularNameLower}-detail.component.css']
 })
 export class ${entidade.singularNameUpper}DetailComponent implements OnInit {
   pageTitle = '${entidade.singularNameUpper} Detail';
   errorMessage = '';
-  ${entidade.nameLower}: I${entidade.singularNameUpper} | undefined;
+  ${entidade.singularNameLower}: I${entidade.singularNameUpper} | undefined;
 
 constructor(private route: ActivatedRoute,
               private router: Router,
-              private ${entidade.nameLower}Service: ${entidade.singularNameUpper}Service) {
+              private ${entidade.singularNameLower}Service: ${entidade.singularNameUpper}Service) {
   }
 
   ngOnInit(): void {
@@ -24,8 +24,8 @@ constructor(private route: ActivatedRoute,
     }
   }
   get${entidade.singularNameUpper}(id: number): void {
-    this.${entidade.nameLower}Service.get${entidade.singularNameUpper}(id).subscribe({
-      next: ${entidade.nameLower} => this.${entidade.nameLower} = ${entidade.nameLower},
+    this.${entidade.singularNameLower}Service.get${entidade.singularNameUpper}(id).subscribe({
+      next: ${entidade.singularNameLower} => this.${entidade.singularNameLower} = ${entidade.singularNameLower},
       error: err => this.errorMessage = err
     });
   }

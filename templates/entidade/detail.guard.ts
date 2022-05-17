@@ -14,8 +14,8 @@ export class ${entidade.singularNameUpper}DetailGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const id = Number(route.paramMap.get('id'));
     if (isNaN(id) || id < 1) {
-      alert('Invalid ${entidade.nameLower} id');
-      this.router.navigate(['/${entidade.nameLower}']);
+      alert('Invalid ${entidade.singularNameLower} id');
+      this.router.navigate(['/${entidade.singularNameLower}']);
       return false;
     }
     return true;
