@@ -95,7 +95,7 @@ VALUES (1, true, true, 'Product', true, true, 'Product', true, 'Products','produ
 
 delete from campo;
 INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (1, 'productId', 'Product Id', 'number', 1, 10, 'O');
-INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, HAS_FILTER) VALUES (2, 'productName', 'Product', 'text', 1, 30, 'IO', TRUE);
+INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, HAS_FILTER, LINK_FIELD) VALUES (2, 'productName', 'Product', 'text', 1, 30, 'IO', TRUE, 'productId');
 INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, OUTPUT_FORMAT) VALUES (3, 'productCode', 'Code', 'text', 1, 40, 'IO','| lowercase');
 INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (4, 'releaseDate', 'Available', 'text', 1, 50, 'IO');
 INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, OUTPUT_FORMAT) VALUES (5, 'price', 'Price', 'number', 1, 60, 'IO','| currency:"USD":"symbol":"1.2-2"');
@@ -119,6 +119,8 @@ INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('html detail for component','templates/entidade/detail.component.html','angular/src/${entidade.nameLower}','${entidade.nameLower}-detail.component.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('ts detail for component','templates/entidade/detail.component.ts','angular/src/${entidade.nameLower}','${entidade.nameLower}-detail.component.ts');
+INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
+VALUES('component guard ts','templates/entidade/detail.guard.ts','angular/src/${entidade.nameLower}','${entidade.nameLower}-detail.guard.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('application module ts','templates/projeto/app.module.ts','angular/src/app','app.module.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )

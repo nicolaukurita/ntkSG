@@ -28,6 +28,11 @@ public class Campo {
      */
     private String displayName;
     /**
+     * link field is anchor for another field of same entity
+     * for i.e, you have a field 'name' and like to link to id, so this field has to be filled with id
+     */
+    private String linkField;
+    /**
      * hasFilter is true if field has filtered
      */
     private Boolean hasFilter;

@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { I${entidade.nome} } from './${entidade.nameLower}';
 import { ${entidade.nome}Service } from './${entidade.nameLower}.service';
 @Component({
-    templateUrl: './${entidade.nome.toLowerCase()}-list.component.html'
+    templateUrl: './${entidade.nameLower}-list.component.html'
 })
 export class ${entidade.Nome}ListComponent implements OnInit{
     pageTitle: string = '${entidade.nome} List';

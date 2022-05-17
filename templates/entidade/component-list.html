@@ -45,17 +45,22 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let ${entidade.nome.toLowerCase()} of filtered${entidade.pluralName}">
+            <tr *ngFor="let ${entidade.nameLower} of filtered${entidade.pluralName}">
 #foreach( $campo in $campos )
 #if ($campo.tipo == 'imageUrl')
                 <td>
-                    <img [src]="${entidade.nome.toLowerCase()}.${campo.nome}"
-                         [title]="${entidade.nome.toLowerCase()}.${campo.imageTitle}"
+                    <img [src]="${entidade.nameLower}.${campo.nome}"
+                         [title]="${entidade.nameLower}.${campo.imageTitle}"
                          width=${campo.imageWidth}
                          margin=${campo.imageMargin}>
                 </td>
 #elseif ($campo.inputOutputType == 'IO' || $campo.inputOutputType == 'I')
-                <td>{{${entidade.nome.toLowerCase()}.${campo.nome}#if ($campo.outputFormat)${campo.outputFormat}#end}}</td>
+#if ($campo.linkField)
+                <td><a [routerLink]="['/${entidade.pluralNameLower}', ${entidade.nameLower}.${campo.linkField}]">
+                       {{${entidade.nameLower}.${campo.nome}#if ($campo.outputFormat)${campo.outputFormat}#end}}</a></td>
+#else
+                <td>{{${entidade.nameLower}.${campo.nome}#if ($campo.outputFormat)${campo.outputFormat}#end}}</td>
+#end
 #end
 #end
             </tr>
