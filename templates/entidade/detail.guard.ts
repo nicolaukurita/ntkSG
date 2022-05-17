@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ${entidade.nome}DetailGuard implements CanActivate {
+export class ${entidade.singularNameUpper}DetailGuard implements CanActivate {
 
   constructor(private router: Router) {}
 

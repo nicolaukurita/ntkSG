@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { I${entidade.nome} } from './${entidade.nameLower}';
-import { ${entidade.nome}Service } from './${entidade.nameLower}.service';
+import { I${entidade.singularNameUpper} } from './${entidade.nameLower}';
+import { ${entidade.singularNameUpper}Service } from './${entidade.nameLower}.service';
 @Component({
     templateUrl: './${entidade.nameLower}-list.component.html'
 })
-export class ${entidade.Nome}ListComponent implements OnInit{
-    pageTitle: string = '${entidade.nome} List';
+export class ${entidade.singularNameUpper}ListComponent implements OnInit{
+    pageTitle: string = '${entidade.singularNameUpper} List';
       errorMessage = '';
 sub!: Subscription;
 
@@ -21,18 +21,18 @@ sub!: Subscription;
     this.filtered${entidade.pluralName} = this.performFilter(value);
   }
 
-  filtered${entidade.pluralName}: I${entidade.nome}[] = [];
+  filtered${entidade.pluralName}: I${entidade.singularNameUpper}[] = [];
 
-    performFilter(filterBy: string): I${entidade.nome}[] {
+    performFilter(filterBy: string): I${entidade.singularNameUpper}[] {
       filterBy = filterBy.toLocaleLowerCase();
-      return this.${entidade.pluralNameLower}.filter((${entidade.nameLower}: I${entidade.nome}) =>
+      return this.${entidade.pluralNameLower}.filter((${entidade.nameLower}: I${entidade.singularNameUpper}) =>
         ${entidade.nameLower}.${campo.nome}.toLocaleLowerCase().includes(filterBy));
     }
 #end
 #end
-    constructor(private ${entidade.nameLower}Service: ${entidade.nome}Service) {}
+    constructor(private ${entidade.nameLower}Service: ${entidade.singularNameUpper}Service) {}
 
-    ${entidade.pluralNameLower}: I${entidade.nome}[] = [];
+    ${entidade.pluralNameLower}: I${entidade.singularNameUpper}[] = [];
 
   ngOnInit(): void {
     this.sub = this.${entidade.nameLower}Service.get${entidade.pluralName}().subscribe({

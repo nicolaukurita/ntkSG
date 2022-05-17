@@ -2,22 +2,29 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map, tap } from 'rxjs/operators';
-import { I${entidade.nome} } from "./${entidade.nameLower}";
+import { I${entidade.singularNameUpper} } from "./${entidade.nameLower}";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ${entidade.Nome}Service {
+export class ${entidade.singularNameUpper}Service {
     private ${entidade.nameLower}Url = 'api/${entidade.pluralNameLower}/${entidade.pluralNameLower}.json';
     constructor(private http: HttpClient) { }
 
-    get${entidade.pluralName}(): Observable<I${entidade.nome}[]> {
-    return this.http.get<I${entidade.nome}[]>(this.${entidade.nameLower}Url)
+    get${entidade.pluralName}(): Observable<I${entidade.singularNameUpper}[]> {
+    return this.http.get<I${entidade.singularNameUpper}[]>(this.${entidade.nameLower}Url)
           .pipe(
             tap(data => console.log('All: ', JSON.stringify(data))),
             catchError(this.handleError)
           );
     }
+
+  get${entidade.singularNameUpper}(id: number): Observable<I${entidade.singularNameUpper} | undefined> {
+    return this.get${entidade.pluralName}()
+      .pipe(
+        map((${entidade.pluralNameLower}: I${entidade.singularNameUpper}[]) => ${entidade.pluralNameLower}.find(p => p.${entidade.nameLower}Id === id))
+      );
+  }
 
     private handleError(err: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure

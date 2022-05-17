@@ -26,7 +26,7 @@ public class Entidade {
     /**
      * name in singular, upper case
      */
-    private String nome;
+    private String singularNameUpper;
     /**
      * name in plural, upper case
      */

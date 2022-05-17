@@ -82,7 +82,7 @@ public class Gerar {
             context.put("entidade", entidade);
 
             Map<String, String> map = new HashMap<>();
-            map.put("entidade.nome", entidade.getNome());
+            map.put("entidade.singularNameUpper", entidade.getSingularNameUpper());
             map.put("entidade.nameLower", entidade.getNameLower());
             map.put("tipo", "list");
 

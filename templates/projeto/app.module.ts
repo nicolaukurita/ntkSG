@@ -5,9 +5,9 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 #foreach( $entidade in $entidades )
-import { ${entidade.nome}ListComponent } from 'src/${entidade.nameLower}/${entidade.nameLower}-list.component';
-import { ${entidade.nome}DetailComponent } from 'src/${entidade.nameLower}/${entidade.nameLower}-detail.component';
-import { ${entidade.nome}DetailGuard } from 'src/${entidade.nameLower}/${entidade.nameLower}-detail.guard';
+import { ${entidade.singularNameUpper}ListComponent } from 'src/${entidade.nameLower}/${entidade.nameLower}-list.component';
+import { ${entidade.singularNameUpper}DetailComponent } from 'src/${entidade.nameLower}/${entidade.nameLower}-detail.component';
+import { ${entidade.singularNameUpper}DetailGuard } from 'src/${entidade.nameLower}/${entidade.nameLower}-detail.guard';
 #end
 import { FormsModule } from '@angular/forms';
 import { WelcomeComponent } from 'src/home/welcome.component';
@@ -15,7 +15,7 @@ import { WelcomeComponent } from 'src/home/welcome.component';
 @NgModule({
   declarations: [
 #foreach( $entidade in $entidades )
-    ${entidade.nome}ListComponent,
+    ${entidade.singularNameUpper}ListComponent,
 #end
     WelcomeComponent,
     AppComponent
@@ -25,8 +25,8 @@ import { WelcomeComponent } from 'src/home/welcome.component';
     HttpClientModule,
     RouterModule.forRoot([
 #foreach( $entidade in $entidades )
-          { path: '${entidade.pluralNameLower}', component: ${entidade.nome}ListComponent },
-          { path: '${entidade.pluralNameLower}/:id', canActivate: [${entidade.nome}DetailGuard], component: ${entidade.nome}DetailComponent },
+          { path: '${entidade.pluralNameLower}', component: ${entidade.singularNameUpper}ListComponent },
+          { path: '${entidade.pluralNameLower}/:id', canActivate: [${entidade.singularNameUpper}DetailGuard], component: ${entidade.singularNameUpper}DetailComponent },
 #end
           { path: 'welcome', component: WelcomeComponent },
           { path: '', redirectTo: 'welcome', pathMatch: 'full' },

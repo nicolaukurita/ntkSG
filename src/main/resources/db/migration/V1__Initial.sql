@@ -15,7 +15,7 @@ create table campo (
         descricao varchar(255),
         excluir bit not null,
         incluir bit not null,
-        nome varchar(255),
+        singularNameUpper varchar(255),
         projeto_id integer not null,
         primary key (id)
     ) engine=InnoDB
@@ -73,7 +73,7 @@ create table campo (
 INSERT INTO sgdb.usuario (first_name, last_name) VALUES ('Nicolau','Kurita');
 INSERT INTO sgdb.projeto (nome) VALUES ('ntkSGC');
 INSERT INTO sgdb.tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
-INSERT INTO `sgdb`.`entidade` (`id`, `alterar`, `consultar`, `descricao`, `excluir`, `incluir`, `nome`, `projeto_id`) VALUES ('1', b'1', b'1', 'Usuario', b'1', b'1', 'Usuario', b'1');
+INSERT INTO `sgdb`.`entidade` (`id`, `alterar`, `consultar`, `descricao`, `excluir`, `incluir`, `singularNameUpper`, `projeto_id`) VALUES ('1', b'1', b'1', 'Usuario', b'1', b'1', 'Usuario', b'1');
 INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('1', 'Id', 'text', '1');
 INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('2', 'Nome', 'text', '1');
 select * from sgdb.tarefa;
@@ -90,7 +90,7 @@ VALUES ('apm','Acme Product Management','ANGULAR','pm','h:/lixo');
 INSERT INTO tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
 
 delete from entidade;
-INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, nome, projeto_id, PLURAL_NAME, NAME_LOWER, PLURAL_NAME_LOWER )
+INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, SINGULAR_NAME_UPPER, projeto_id, PLURAL_NAME, NAME_LOWER, PLURAL_NAME_LOWER )
 VALUES (1, true, true, 'Product', true, true, 'Product', true, 'Products','product','products');
 
 delete from campo;
@@ -134,8 +134,8 @@ VALUES('welcome component html','templates/projeto/welcome.component.html','angu
 
 
 update TEMPLATE
-set OUTPUT_PATH ='angular/src/${entidade.nome}',
-FILE_NAME ='${entidade.nome}-${tipo}.component.html'
+set OUTPUT_PATH ='angular/src/${entidade.singularNameUpper}',
+FILE_NAME ='${entidade.singularNameUpper}-${tipo}.component.html'
 where id=3;
 
 update ENTIDADE
@@ -145,7 +145,7 @@ set NAME_LOWER ='product'
 
 update TEMPLATE
 set INPUT_TEMPLATE_PATH ='templates/entidade/component-list.html'
-,FILE_NAME ='${entidade.nome}-${tipo}.component.html'
+,FILE_NAME ='${entidade.singularNameUpper}-${tipo}.component.html'
 where id =3;
 
 update tarefa set SITUACAO ='PENDENTE';
