@@ -41,3 +41,8 @@ docker restart mysql1
 
 #To do
 multiple fields filter per entity
+
+entities - historic changes
+entities - maker and checker
+
+app - multi language

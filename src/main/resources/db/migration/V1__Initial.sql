@@ -94,16 +94,24 @@ INSERT INTO entidade (id, alterar, consultar, descricao, excluir, incluir, SINGU
 VALUES (1, true, true, 'Product', true, true, 'Product', 1, 'Products','product','products');
 
 delete from campo;
-INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (1, 'productId', 'Product Id', 'number', 1, 10, 'O');
-INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, HAS_FILTER, LINK_FIELD) VALUES (2, 'productName', 'Product', 'text', 1, 30, 'IO', TRUE, 'productId');
-INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, OUTPUT_FORMAT) VALUES (3, 'productCode', 'Code', 'text', 1, 40, 'IO','| lowercase');
-INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (4, 'releaseDate', 'Available', 'text', 1, 50, 'IO');
-INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, OUTPUT_FORMAT) VALUES (5, 'price', 'Price', 'number', 1, 60, 'IO','| currency:"USD":"symbol":"1.2-2"');
-INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (6, 'description', 'Description', 'text', 1, 70, 'O');
-INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (7, 'starRating', '5 Star Rating', 'number', 1, 80, 'IO');
-INSERT INTO campo (id, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, IMAGE_MARGIN, IMAGE_WIDTH, IMAGE_TITLE) VALUES (8, 'imageUrl', 'Show Image', 'imageUrl', 1, 20, 'IO', 2, 20, 'productName');
+INSERT INTO campo (id, DICIONARIO_ID, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (1, 1, 'productId', 'Product Id', 'number', 1, 10, 'O');
+INSERT INTO campo (id, DICIONARIO_ID, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, HAS_FILTER, LINK_FIELD) VALUES (2,2, 'productName', 'Product', 'text', 1, 30, 'IO', TRUE, 'productId');
+INSERT INTO campo (id, DICIONARIO_ID, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, OUTPUT_FORMAT) VALUES (3,3, 'productCode', 'Code', 'text', 1, 40, 'IO','| lowercase');
+INSERT INTO campo (id, DICIONARIO_ID, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (4,4, 'releaseDate', 'Available', 'text', 1, 50, 'IO');
+INSERT INTO campo (id, DICIONARIO_ID, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, OUTPUT_FORMAT) VALUES (5,5, 'price', 'Price', 'number', 1, 60, 'IO','| currency:"USD":"symbol":"1.2-2"');
+INSERT INTO campo (id, DICIONARIO_ID, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (6,6, 'description', 'Description', 'text', 1, 70, 'O');
+INSERT INTO campo (id, DICIONARIO_ID, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE) VALUES (7,7, 'starRating', '5 Star Rating', 'number', 1, 80, 'IO');
+INSERT INTO campo (id, DICIONARIO_ID, nome, display_name, tipo, entidade_id, FIELD_ORDER, INPUT_OUTPUT_TYPE, IMAGE_MARGIN, IMAGE_WIDTH, IMAGE_TITLE) VALUES (8,8, 'imageUrl', 'Show Image', 'imageUrl', 1, 20, 'IO', 2, 20, 'productName');
 
-
+DELETE FROM DICIONARIO;
+insert into DICIONARIO (ID ,NAME ,DISPLAY_NAME ,TYPE ) VALUES (1, 'productId', 'Product Id', 'number');
+insert into DICIONARIO (ID ,NAME ,DISPLAY_NAME ,TYPE ) VALUES (2, 'productName', 'Product', 'text');
+insert into DICIONARIO (ID ,NAME ,DISPLAY_NAME ,TYPE ) VALUES (3, 'productCode', 'Code', 'text');
+insert into DICIONARIO (ID ,NAME ,DISPLAY_NAME ,TYPE ) VALUES (4, 'releaseDate', 'Available', 'text');
+insert into DICIONARIO (ID ,NAME ,DISPLAY_NAME ,TYPE ) VALUES (5, 'price', 'Price', 'number');
+insert into DICIONARIO (ID ,NAME ,DISPLAY_NAME ,TYPE ) VALUES (6, 'description', 'Description', 'text');
+insert into DICIONARIO (ID ,NAME ,DISPLAY_NAME ,TYPE ) VALUES (7, 'starRating', '5 Star Rating', 'number');
+insert into DICIONARIO (ID ,NAME ,DISPLAY_NAME ,TYPE ) VALUES (8, 'imageUrl', 'Show Image', 'imageUrl');
 
 /*
 delete from TEMPLATE;
@@ -112,21 +120,23 @@ VALUES('application html','templates/projeto/component.html','angular/src/app','
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
 VALUES('application ts component','templates/projeto/component.ts', 'angular/src/app', 'app.component.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('html list for component','templates/entidade/component-list.html','angular/src/${entidade.singularNameLower}','${entidade.singularNameLower}-${tipo}.component.html');
+VALUES('html list for component','templates/entidade/component-list.html','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}-${tipo}.component.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('ts list for component','templates/entidade/component-list.ts','angular/src/${entidade.singularNameLower}','${entidade.singularNameLower}-${tipo}.component.ts');
+VALUES('ts list for component','templates/entidade/component-list.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}-${tipo}.component.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('html detail for component','templates/entidade/detail.component.html','angular/src/${entidade.singularNameLower}','${entidade.singularNameLower}-detail.component.html');
+VALUES('ts module for component','templates/entidade/module.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}.module.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('ts detail for component','templates/entidade/detail.component.ts','angular/src/${entidade.singularNameLower}','${entidade.singularNameLower}-detail.component.ts');
+VALUES('html detail for component','templates/entidade/detail.component.html','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}-detail.component.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('component guard ts','templates/entidade/detail.guard.ts','angular/src/${entidade.singularNameLower}','${entidade.singularNameLower}-detail.guard.ts');
+VALUES('ts detail for component','templates/entidade/detail.component.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}-detail.component.ts');
+INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
+VALUES('component guard ts','templates/entidade/detail.guard.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}-detail.guard.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('application module ts','templates/projeto/app.module.ts','angular/src/app','app.module.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('component interface ts','templates/entidade/interface.ts','angular/src/${entidade.singularNameLower}','${entidade.singularNameLower}.ts');
+VALUES('component interface ts','templates/entidade/interface.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('component service ts','templates/entidade/service.ts','angular/src/${entidade.singularNameLower}','${entidade.singularNameLower}.service.ts');
+VALUES('component service ts','templates/entidade/service.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}.service.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('welcome component ts','templates/projeto/welcome.component.ts','angular/src/home','welcome.component.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
@@ -157,5 +167,6 @@ select * from tarefa      ;
 select * from entidade    ;
 select * from campo       ;
 select * from Template    ;
+select * from DICIONARIO ;
 
 */

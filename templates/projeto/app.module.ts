@@ -4,19 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-#foreach( $entidade in $entidades )
-import { ${entidade.singularNameUpper}ListComponent } from 'src/${entidade.singularNameLower}/${entidade.singularNameLower}-list.component';
-import { ${entidade.singularNameUpper}DetailComponent } from 'src/${entidade.singularNameLower}/${entidade.singularNameLower}-detail.component';
-import { ${entidade.singularNameUpper}DetailGuard } from 'src/${entidade.singularNameLower}/${entidade.singularNameLower}-detail.guard';
-#end
-import { FormsModule } from '@angular/forms';
 import { WelcomeComponent } from 'src/home/welcome.component';
+import { ${entidade.singularNameUpper}Module } from 'src/${entidade.pluralNameLower}/${entidade.singularNameLower}.module';
 
 @NgModule({
   declarations: [
-#foreach( $entidade in $entidades )
-    ${entidade.singularNameUpper}ListComponent,
-#end
     WelcomeComponent,
     AppComponent
   ],
@@ -24,15 +16,11 @@ import { WelcomeComponent } from 'src/home/welcome.component';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
-#foreach( $entidade in $entidades )
-          { path: '${entidade.pluralNameLower}', component: ${entidade.singularNameUpper}ListComponent },
-          { path: '${entidade.pluralNameLower}/:id', canActivate: [${entidade.singularNameUpper}DetailGuard], component: ${entidade.singularNameUpper}DetailComponent },
-#end
           { path: 'welcome', component: WelcomeComponent },
           { path: '', redirectTo: 'welcome', pathMatch: 'full' },
           { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
         ]),
-    FormsModule
+    ${entidade.singularNameUpper}Module
   ],
   providers: [],
   bootstrap: [AppComponent]
