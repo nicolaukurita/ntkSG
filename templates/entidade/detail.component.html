@@ -1,8 +1,22 @@
 <div class='card'>
     <div class='card-header'>
-        {{pageTitle + ': ' + ${entidade.nameLower}?.productName}}
+        {{pageTitle + ': ' + ${entidade.singularNameLower}?.productName}}
     </div>
-
+    <div class='card-body'
+         *ngIf='product'>
+        <div class='row'>
+            <div class='col-md-8'>
+#foreach( $campo in $campos)
+#if ($campo.inputOutputType == 'IO' || $campo.inputOutputType == 'I')
+                <div class='row'>
+                    <div class='col-md-4'>${campo.dicionario.displayName}:</div>
+                    <div class='col-md-8'>{{${entidade.singularNameLower}.${campo.dicionario.name}#if ($campo.outputFormat)${campo.outputFormat}#end}}</div>
+                </div>
+#end
+#end
+            </div>
+        </div>
+    </div>
     <div class='card-footer'>
         <button class='btn btn-outline-secondary'
                 style='width:80px'

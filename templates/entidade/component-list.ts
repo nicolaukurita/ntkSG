@@ -12,12 +12,12 @@ sub!: Subscription;
 
 #foreach( $campo in $campos)
 #if ($campo.hasFilter == true)
-  private _listFilter${campo.nome} = '';
-  get listFilter${campo.nome}(): string {
-    return this._listFilter${campo.nome};
+  private _listFilter${campo.dicionario.name} = '';
+  get listFilter${campo.dicionario.name}(): string {
+    return this._listFilter${campo.dicionario.name};
   }
-  set listFilter${campo.nome}(value: string) {
-    this._listFilter${campo.nome}= value;
+  set listFilter${campo.dicionario.name}(value: string) {
+    this._listFilter${campo.dicionario.name}= value;
     this.filtered${entidade.pluralNameUpper} = this.performFilter(value);
   }
 
@@ -26,7 +26,7 @@ sub!: Subscription;
     performFilter(filterBy: string): I${entidade.singularNameUpper}[] {
       filterBy = filterBy.toLocaleLowerCase();
       return this.${entidade.pluralNameLower}.filter((${entidade.singularNameLower}: I${entidade.singularNameUpper}) =>
-        ${entidade.singularNameLower}.${campo.nome}.toLocaleLowerCase().includes(filterBy));
+        ${entidade.singularNameLower}.${campo.dicionario.name}.toLocaleLowerCase().includes(filterBy));
     }
 #end
 #end

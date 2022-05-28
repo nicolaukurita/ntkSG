@@ -22,7 +22,10 @@ public class Campo {
     @JoinColumn(name = "entidade_id", nullable = false)
     private Entidade entidade;
 
-    private String nome;
+    @OneToOne
+    @JoinColumn(name = "dicionario_id")
+    private Dicionario dicionario;
+
     /**
      * display name. The name will be shown at UI
      */
@@ -71,4 +74,8 @@ public class Campo {
      * Output fields will exist only at database
      */
     private String inputOutputType;
+    /**
+     * required field
+     */
+    private Boolean required;
 }

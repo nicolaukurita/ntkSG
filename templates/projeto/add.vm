@@ -7,8 +7,8 @@
 <body>
 <form method="post" action="add">
 #foreach( $campo in $campos )
-    <label>${campo.nome}:</label>
-    <input type="${campo.tipo}" name="${campo.nome}">
+    <label>${campo.dicionario.name}:</label>
+    <input type="${campo.tipo}" name="${campo.dicionario.name}">
 #end
     <input type="submit">
 </form>

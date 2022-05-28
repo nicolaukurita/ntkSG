@@ -15,7 +15,7 @@
             <div class="col-md-4">
 #foreach( $campo in $campos )
 #if ($campo.hasFilter)
-                <input type="text" [(ngModel)]="listFilter${campo.nome}"/>
+                <input type="text" [(ngModel)]="listFilter$campo.dicionario.name"/>
 #end
 #end
             </div>
@@ -35,11 +35,11 @@
 #if ($campo.tipo == 'imageUrl')
                 <th>
                     <button class="btn btn-primary">
-                        ${campo.displayName}
+                        ${campo.dicionario.displayName}
                     </button>
                 </th>
 #elseif ($campo.inputOutputType == 'IO' || $campo.inputOutputType == 'I')
-                <th>${campo.displayName}</th>
+                <th>${campo.dicionario.displayName}</th>
 #end
 #end
             </tr>
@@ -49,7 +49,7 @@
 #foreach( $campo in $campos )
 #if ($campo.tipo == 'imageUrl')
                 <td>
-                    <img [src]="${entidade.singularNameLower}.${campo.nome}"
+                    <img [src]="${entidade.singularNameLower}.${campo.dicionario.name}"
                          [title]="${entidade.singularNameLower}.${campo.imageTitle}"
                          width=${campo.imageWidth}
                          margin=${campo.imageMargin}>
@@ -57,9 +57,9 @@
 #elseif ($campo.inputOutputType == 'IO' || $campo.inputOutputType == 'I')
 #if ($campo.linkField)
                 <td><a [routerLink]="['/${entidade.pluralNameLower}', ${entidade.singularNameLower}.${campo.linkField}]">
-                       {{${entidade.singularNameLower}.${campo.nome}#if ($campo.outputFormat)${campo.outputFormat}#end}}</a></td>
+                       {{${entidade.singularNameLower}.${campo.dicionario.name}#if ($campo.outputFormat)${campo.outputFormat}#end}}</a></td>
 #else
-                <td>{{${entidade.singularNameLower}.${campo.nome}#if ($campo.outputFormat)${campo.outputFormat}#end}}</td>
+                <td>{{${entidade.singularNameLower}.${campo.dicionario.name}#if ($campo.outputFormat)${campo.outputFormat}#end}}</td>
 #end
 #end
 #end
