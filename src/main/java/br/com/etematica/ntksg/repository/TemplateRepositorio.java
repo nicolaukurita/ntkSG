@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TemplateRepositorio extends CrudRepository<Template,Integer> {
-
+    Template findByName(String name);
 }

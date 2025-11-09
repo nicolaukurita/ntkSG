@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tarefa {
+public class Tarefa1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

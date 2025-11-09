@@ -1,0 +1,100 @@
+#foreach( $campo in $campos )
+    <label>${campo.dicionario.name}:</label>
+    <input type="${campo.tipo}}" name="${campo.dicionario.name}">
+#end
+import { useState, useEffect } from "react";
+import "./styles.css";
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
+
+function ProjectHandler(projects) {
+    if (!Array.isArray(projects)) {
+        return projects;
+    }
+
+    var i = 0;
+
+    var content = projects.map(function (project) {
+        console.log(project);
+        return (
+            <div key={i++} className="project-item">
+                <div>{project.nome}</div>
+                <div>{project.titulo}</div>
+            </div>
+        );
+    })
+    return (
+        <div>
+            {content}
+        </div>
+    )
+
+}
+
+function formDataToJson(projectName, projectDescription) {
+    let formatedData = {
+        "nome": projectName,
+        "titulo": projectDescription
+    };
+    return JSON.stringify(formatedData);
+}
+
+async function formHandle(event, setMessage) {
+    event.preventDefault();
+
+    const projectName = event.target.projectName.value;
+    const projectDescription = event.target.projectDescription.value;
+
+    const jsonToSend = formDataToJson(projectName, projectDescription);
+
+    const axiosConfig = { headers: { 'Content-Type': 'application/json' } };
+
+    try {
+        await axios.post(BACKEND_URL + "/project", jsonToSend, axiosConfig);
+
+    } catch (error) {
+        console.log("Error during form submission: ", error);
+        setMessage("Error submitting the form.");
+        return;
+    }
+
+
+    console.log(jsonToSend);
+    //setMessage("Form submitted with project name: " + projectName);
+}
+
+export function Project() {
+    const [projectData, setProjectData] = useState("Project data will be displayed here.");
+    const [submitMessage, setSubmitMessage] = useState("");
+
+    useEffect(function () {
+        axios.get(BACKEND_URL + "/project")
+            .then(function (response) {
+                if (response.data === "")
+                    return;
+                //console.log(response.data);
+                setProjectData(ProjectHandler(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .finally(function () {
+                console.log("Request completed.");
+            });
+    }, []);
+
+    return (
+        <div className="project">
+            <h1>Project Page</h1>
+            <p>{submitMessage}</p>
+            <form onSubmit={async (e) => await formHandle(e, setSubmitMessage)}>
+                <h3 className="home-form">Add new project:</h3>
+                <p className="project-form"><input type="text" placeholder="Project Name" name="projectName" /></p>
+                <p className="project-form"><input type="text" placeholder="Project Description" name="projectDescription" /></p>
+
+                <p className="project-form"><input type="submit" value="Create Project" /></p>
+            </form>
+            {projectData}
+        </div>
+    );
+}

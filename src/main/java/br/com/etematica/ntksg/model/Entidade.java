@@ -19,9 +19,11 @@ public class Entidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "projeto_id", nullable = false)
-    private Projeto projeto;
+//    @ManyToOne
+//    @JoinColumn(name = "projeto_id", nullable = false)
+    // o tipo do dado projeto, precisa ser o mesmo tipo da ID da entidade projeto
+    @Column(name = "projeto_id")
+    private Integer projeto;
 
     /**
      * name in singular, upper case
@@ -47,7 +49,7 @@ public class Entidade {
     private boolean excluir;
     private boolean consultar;
 
-    @OneToMany(mappedBy = "entidade",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "entidade", fetch = FetchType.EAGER)
     @OrderBy("fieldOrder")
     private Set<Campo> campos;
 }

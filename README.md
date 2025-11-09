@@ -46,3 +46,24 @@ entities - historic changes
 entities - maker and checker
 
 app - multi language
+
+groups for entitlements
+
+Para a tarefa1 ser iniciada
+update TAREFA set situacao='PENDENTE' where id=178
+
+SELECT * FROM TAREFA 
+
+SELECT * FROM TEMPLATE 
+
+INSERT INTO TEMPLATE
+(ID , INPUT_TEMPLATE_PATH , NAME , OUTPUT_PATH     , FILE_NAME)VALUES
+(123 ,'templates/react/index.jsx','pages','react/src/pages/','${entidade.pluralNameLower}')
+
+UPDATE TEMPLATE
+SET FILE_NAME='${entidade.pluralNameLower}.jsx'
+WHERE ID = 123
+
+UPDATE TEMPLATE
+SET INPUT_TEMPLATE_PATH='templates/react/index.jsx.vm'
+WHERE ID = 123

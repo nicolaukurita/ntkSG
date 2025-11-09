@@ -2,7 +2,7 @@ package br.com.etematica.ntksg.service;
 
 import br.com.etematica.ntksg.model.Entidade;
 import br.com.etematica.ntksg.model.Projeto;
-import br.com.etematica.ntksg.model.Tarefa;
+import br.com.etematica.ntksg.model.Tarefa1;
 import br.com.etematica.ntksg.model.Template;
 import br.com.etematica.ntksg.repository.CampoRepositorio;
 import br.com.etematica.ntksg.repository.ProjetoRepositorio;
@@ -43,16 +43,16 @@ public class Gerar {
     TemplateRepositorio templateRepositorio;
 
     public void GerarProjetos() {
-        Set<Tarefa> tarefas = tarefaRepositorio.findTarefaBySituacao("PENDENTE");
-        for (Tarefa tarefa : tarefas) {
-            GerarProjeto(tarefa);
-            tarefa.setSituacao("COMPLETED");
-            tarefaRepositorio.save(tarefa);
+        Set<Tarefa1> tarefa1s = tarefaRepositorio.findTarefaBySituacao("PENDENTE");
+        for (Tarefa1 tarefa1 : tarefa1s) {
+            GerarProjeto(tarefa1);
+            tarefa1.setSituacao("COMPLETED");
+            tarefaRepositorio.save(tarefa1);
         }
     }
 
-    public void GerarProjeto(Tarefa tarefa) {
-        Optional<Projeto> optionalProjeto = projetoRepositorio.findById(tarefa.getProjetoId());
+    public void GerarProjeto(Tarefa1 tarefa1) {
+        Optional<Projeto> optionalProjeto = projetoRepositorio.findById(tarefa1.getProjetoId());
         if (optionalProjeto.isPresent()) {
             Projeto projeto = optionalProjeto.get();
 
@@ -73,6 +73,8 @@ public class Gerar {
         String inputTemplate = template.getInputTemplatePath();
         String outputPath = projeto.getProjectPath() + "/" + template.getOutputPath();
         String outputFile = outputPath + "/" + template.getFileName();
+
+        System.out.println("Diretorio do projeto:" + outputPath);
 
         VelocityContext context = new VelocityContext();
         context.put("projeto", projeto);

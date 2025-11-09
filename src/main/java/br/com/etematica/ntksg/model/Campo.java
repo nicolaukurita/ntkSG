@@ -18,9 +18,10 @@ public class Campo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "entidade_id", nullable = false)
-    private Entidade entidade;
+//    @ManyToOne
+//    @JoinColumn(name = "entidade_id", nullable = false)
+    @Column(name = "entidade_id")
+    private Integer entidade;
 
     @OneToOne
     @JoinColumn(name = "dicionario_id")
@@ -56,9 +57,6 @@ public class Campo {
      * imageTitle. must be field name
      */
     private String imageTitle;
-    /**
-     * fields order in screen
-     */
     /**
      * output format
      */

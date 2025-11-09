@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/usuario")
+@CrossOrigin()
 public class UsuarioController {
 
     @Autowired
@@ -19,5 +20,10 @@ public class UsuarioController {
         usuario.setLastName(last);
         usuarioRepositorio.save(usuario);
         return "usuario adicionado";
+    }
+
+    @GetMapping("/list")
+    public Iterable<Usuario> getUsuarios() {
+        return usuarioRepositorio.findAll();
     }
 }

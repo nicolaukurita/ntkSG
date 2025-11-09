@@ -1,6 +1,6 @@
 package br.com.etematica.ntksg.controller;
 
-import br.com.etematica.ntksg.model.Tarefa;
+import br.com.etematica.ntksg.model.Tarefa1;
 import br.com.etematica.ntksg.model.Usuario;
 import br.com.etematica.ntksg.repository.TarefaRepositorio;
 import br.com.etematica.ntksg.repository.UsuarioRepositorio;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin()
 public class SgController {
 
     @Autowired
@@ -15,10 +16,12 @@ public class SgController {
 
     @Autowired
     private TarefaRepositorio tarefaRepositorio;
-@PostMapping("/login")
-public String login(@RequestParam String usuario, @RequestParam String senha){
-    return "OK";
-}
+
+    @PostMapping("/login")
+    public String login(@RequestParam String usuario, @RequestParam String senha) {
+        return "OK";
+    }
+
     @PostMapping("/add")
     public String addUsuario(@RequestParam String first, @RequestParam String last) {
         Usuario customer = new Usuario();
@@ -34,12 +37,12 @@ public String login(@RequestParam String usuario, @RequestParam String senha){
     }
 
     @GetMapping("/gerar/{id}")
-    public Tarefa findUsuarioById(@PathVariable Integer id) {
-        Tarefa tarefa = new Tarefa();
-        tarefa.setProjetoId(id);
-        tarefa.setNome("gerar");
-        tarefa.setSituacao("PENDENTE");
+    public Tarefa1 findUsuarioById(@PathVariable Integer id) {
+        Tarefa1 tarefa1 = new Tarefa1();
+        tarefa1.setProjetoId(id);
+        tarefa1.setNome("gerar");
+        tarefa1.setSituacao("PENDENTE");
 
-        return tarefaRepositorio.save(tarefa);
+        return tarefaRepositorio.save(tarefa1);
     }
 }
