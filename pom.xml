@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
+        <version>3.5.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.etematica</groupId>
@@ -14,13 +14,20 @@
     <name>ntksg</name>
     <description>System Generator</description>
     <properties>
-        <java.version>18</java.version>
+        <java.version>25</java.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>2.7.18</version>
+            <version>3.5.7</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-properties-migrator</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
 <!--        <dependency>-->
@@ -62,6 +69,11 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -69,6 +81,26 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.openrewrite.maven</groupId>
+                <artifactId>rewrite-maven-plugin</artifactId>
+                <version>6.22.1</version>
+                <configuration>
+                    <exportDatatables>true</exportDatatables>
+                    <activeRecipes>
+                        <recipe>org.openrewrite.java.migrate.jakarta.JavaxMigrationToJakarta</recipe>
+                    </activeRecipes>
+                </configuration>
+                <dependencies>
+                    <!-- https://mvnrepository.com/artifact/org.openrewrite.recipe/rewrite-migrate-java -->
+                    <dependency>
+                        <groupId>org.openrewrite.recipe</groupId>
+                        <artifactId>rewrite-migrate-java</artifactId>
+                        <version>3.20.0</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

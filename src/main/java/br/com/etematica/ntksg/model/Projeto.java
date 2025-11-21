@@ -1,11 +1,8 @@
 package br.com.etematica.ntksg.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Table(name = "Projeto")
@@ -14,6 +11,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Projeto {
 
     @Id
@@ -22,13 +20,17 @@ public class Projeto {
 
     private String nome;
     /**
-     * Page title - this will going to show at web page
+     * Page title - this will go to show at web page
      */
     private String titulo;
     /**
-     * Type of front end. For instance ANGULAR
+     * Type of front end. For instance ANGULAR,REACT
      */
     private String frontEndType;
+    /**
+     * Type of back end. For instance JAVA
+     */
+    private String backEndType;
     /**
      * Angular Application name
      */
@@ -37,8 +39,13 @@ public class Projeto {
      * project path
      */
     private String projectPath;
+    /**
+     * group of project for java.
+     * Ex. br.com.etematica
+     */
+    private String groupName;
 
-    @ManyToMany(mappedBy = "usuarioProjeto")
+    @ManyToMany(mappedBy = "usuarioProjeto", fetch = FetchType.EAGER)
     Set<Usuario> projetoUsuario;
 
     @OneToMany(mappedBy = "projeto", fetch = FetchType.EAGER)
