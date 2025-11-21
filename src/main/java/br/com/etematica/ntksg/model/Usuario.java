@@ -27,28 +27,4 @@ public class Usuario {
             , joinColumns = @JoinColumn(name = "usuario_id")
             , inverseJoinColumns = @JoinColumn(name = "project_id"))
     Set<Projeto> usuarioProjeto;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }
