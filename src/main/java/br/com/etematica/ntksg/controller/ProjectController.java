@@ -4,7 +4,6 @@ import br.com.etematica.ntksg.dto.request.project.CreateProjectDTO;
 import br.com.etematica.ntksg.dto.response.projeto.ProjetoResponseDTO;
 import br.com.etematica.ntksg.mapper.ProjectMapper;
 import br.com.etematica.ntksg.model.Projeto;
-import br.com.etematica.ntksg.repository.ProjetoRepositorio;
 import br.com.etematica.ntksg.service.ProjetoService;
 import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;

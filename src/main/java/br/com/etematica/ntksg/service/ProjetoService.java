@@ -1,6 +1,5 @@
 package br.com.etematica.ntksg.service;
 
-import br.com.etematica.ntksg.repository.ProjetoRepositorio;
 import br.com.etematica.ntksg.model.Projeto;
 import br.com.etematica.ntksg.repository.ProjetoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;

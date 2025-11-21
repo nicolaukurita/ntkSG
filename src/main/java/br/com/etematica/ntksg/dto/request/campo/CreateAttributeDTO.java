@@ -1,7 +1,6 @@
 package br.com.etematica.ntksg.dto.request.campo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 
 public record CreateAttributeDTO(
 

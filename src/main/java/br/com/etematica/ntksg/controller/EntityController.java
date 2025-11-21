@@ -3,8 +3,6 @@ package br.com.etematica.ntksg.controller;
 import br.com.etematica.ntksg.dto.request.entity.CreateEntityDTO;
 import br.com.etematica.ntksg.dto.response.entity.EntityResponseDTO;
 import br.com.etematica.ntksg.mapper.EntityMapper;
-import br.com.etematica.ntksg.model.Entidade;
-import br.com.etematica.ntksg.repository.EntidadeRepositorio;
 import br.com.etematica.ntksg.service.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
