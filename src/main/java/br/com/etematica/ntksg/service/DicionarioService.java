@@ -12,6 +12,18 @@ public class DicionarioService {
     @Autowired
     DicionarioRepositorio dicionarioRepositorio;
 
+    public List<Dicionario> findAll() {
+        return dicionarioRepositorio.findAll();
+    }
+
+    public Dicionario save(Dicionario dicionario) {
+        return dicionarioRepositorio.save(dicionario);
+    }
+
+    public void deleteById(Integer id) {
+        dicionarioRepositorio.deleteById(id);
+    }
+
     public List<Dicionario> findByDisplayNameContainingIgnoreCase(String displayName) {
         return dicionarioRepositorio.findByDisplayNameContainingIgnoreCase(displayName);
     }

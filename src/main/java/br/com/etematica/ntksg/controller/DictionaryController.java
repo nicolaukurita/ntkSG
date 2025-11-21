@@ -16,7 +16,7 @@ public class DictionaryController {
     DicionarioService dicionarioService;
 
     @GetMapping
-    public Iterable<Dicionario> listAll() {
+    public List<Dicionario> listAll() {
         return dicionarioService.findAll();
     }
 
