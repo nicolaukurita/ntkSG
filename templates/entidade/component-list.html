@@ -1,6 +1,6 @@
 <div class='card'>
     <div class='card-header'>
-        ${entidade.singularNameUpper} List
+        ${entidade.singularPascalCase} List
     </div>
 #set ($hasFilter = false)
 #foreach( $campo in $campos )
@@ -28,7 +28,7 @@
     </div>
 #end
     <div class="table-responsive">
-        <table class="table" *ngIf="${entidade.pluralNameLower}.length">
+        <table class="table" *ngIf="${entidade.pluralCamelCase}.length">
             <thead>
             <tr>
 #foreach( $campo in $campos )
@@ -45,21 +45,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let ${entidade.singularNameLower} of filtered${entidade.pluralNameUpper}">
+            <tr *ngFor="let ${entidade.singularCamelCase} of filtered${entidade.pluralPascalCase}">
 #foreach( $campo in $campos )
 #if ($campo.tipo == 'imageUrl')
                 <td>
-                    <img [src]="${entidade.singularNameLower}.${campo.dicionario.name}"
-                         [title]="${entidade.singularNameLower}.${campo.imageTitle}"
+                    <img [src]="${entidade.singularCamelCase}.${campo.dicionario.name}"
+                         [title]="${entidade.singularCamelCase}.${campo.imageTitle}"
                          width=${campo.imageWidth}
                          margin=${campo.imageMargin}>
                 </td>
 #elseif ($campo.inputOutputType == 'IO' || $campo.inputOutputType == 'I')
 #if ($campo.linkField)
-                <td><a [routerLink]="['/${entidade.pluralNameLower}', ${entidade.singularNameLower}.${campo.linkField}]">
-                       {{${entidade.singularNameLower}.${campo.dicionario.name}#if ($campo.outputFormat)${campo.outputFormat}#end}}</a></td>
+                <td><a [routerLink]="['/${entidade.pluralCamelCase}', ${entidade.singularCamelCase}.${campo.linkField}]">
+                       {{${entidade.singularCamelCase}.${campo.dicionario.name}#if ($campo.outputFormat)${campo.outputFormat}#end}}</a></td>
 #else
-                <td>{{${entidade.singularNameLower}.${campo.dicionario.name}#if ($campo.outputFormat)${campo.outputFormat}#end}}</td>
+                <td>{{${entidade.singularCamelCase}.${campo.dicionario.name}#if ($campo.outputFormat)${campo.outputFormat}#end}}</td>
 #end
 #end
 #end

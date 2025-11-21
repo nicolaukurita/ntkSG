@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { I${entidade.singularNameUpper} } from './${entidade.singularNameLower}';
-import { ${entidade.singularNameUpper}Service } from './${entidade.singularNameLower}.service';
+import { I${entidade.singularPascalCase} } from './${entidade.singularCamelCase}';
+import { ${entidade.singularPascalCase}Service } from './${entidade.singularCamelCase}.service';
 @Component({
-    templateUrl: './${entidade.singularNameLower}-list.component.html'
+    templateUrl: './${entidade.singularCamelCase}-list.component.html'
 })
-export class ${entidade.singularNameUpper}ListComponent implements OnInit{
-    pageTitle: string = '${entidade.singularNameUpper} List';
+export class ${entidade.singularPascalCase}ListComponent implements OnInit{
+    pageTitle: string = '${entidade.singularPascalCase} List';
       errorMessage = '';
 sub!: Subscription;
 
@@ -18,27 +18,27 @@ sub!: Subscription;
   }
   set listFilter${campo.dicionario.name}(value: string) {
     this._listFilter${campo.dicionario.name}= value;
-    this.filtered${entidade.pluralNameUpper} = this.performFilter(value);
+    this.filtered${entidade.pluralPascalCase} = this.performFilter(value);
   }
 
-  filtered${entidade.pluralNameUpper}: I${entidade.singularNameUpper}[] = [];
+  filtered${entidade.pluralPascalCase}: I${entidade.singularPascalCase}[] = [];
 
-    performFilter(filterBy: string): I${entidade.singularNameUpper}[] {
+    performFilter(filterBy: string): I${entidade.singularPascalCase}[] {
       filterBy = filterBy.toLocaleLowerCase();
-      return this.${entidade.pluralNameLower}.filter((${entidade.singularNameLower}: I${entidade.singularNameUpper}) =>
-        ${entidade.singularNameLower}.${campo.dicionario.name}.toLocaleLowerCase().includes(filterBy));
+      return this.${entidade.pluralCamelCase}.filter((${entidade.singularCamelCase}: I${entidade.singularPascalCase}) =>
+        ${entidade.singularCamelCase}.${campo.dicionario.name}.toLocaleLowerCase().includes(filterBy));
     }
 #end
 #end
-    constructor(private ${entidade.singularNameLower}Service: ${entidade.singularNameUpper}Service) {}
+    constructor(private ${entidade.singularCamelCase}Service: ${entidade.singularPascalCase}Service) {}
 
-    ${entidade.pluralNameLower}: I${entidade.singularNameUpper}[] = [];
+    ${entidade.pluralCamelCase}: I${entidade.singularPascalCase}[] = [];
 
   ngOnInit(): void {
-    this.sub = this.${entidade.singularNameLower}Service.get${entidade.pluralNameUpper}().subscribe({
-      next: ${entidade.singularNameLower} => {
-        this.${entidade.pluralNameLower} = ${entidade.singularNameLower};
-        this.filtered${entidade.pluralNameUpper} = this.${entidade.pluralNameLower};
+    this.sub = this.${entidade.singularCamelCase}Service.get${entidade.pluralPascalCase}().subscribe({
+      next: ${entidade.singularCamelCase} => {
+        this.${entidade.pluralCamelCase} = ${entidade.singularCamelCase};
+        this.filtered${entidade.pluralPascalCase} = this.${entidade.pluralCamelCase};
       },
       error: err => this.errorMessage = err
         });

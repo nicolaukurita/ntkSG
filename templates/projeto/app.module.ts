@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from 'src/home/welcome.component';
-import { ${entidade.singularNameUpper}Module } from 'src/${entidade.pluralNameLower}/${entidade.singularNameLower}.module';
+import { ${entidade.singularPascalCase}Module } from 'src/${entidade.pluralCamelCase}/${entidade.singularCamelCase}.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { ${entidade.singularNameUpper}Module } from 'src/${entidade.pluralNameLo
           { path: '', redirectTo: 'welcome', pathMatch: 'full' },
           { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
         ]),
-    ${entidade.singularNameUpper}Module
+    ${entidade.singularPascalCase}Module
   ],
   providers: [],
   bootstrap: [AppComponent]

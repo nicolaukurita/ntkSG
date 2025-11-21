@@ -1,11 +1,8 @@
 package br.com.etematica.ntksg.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -13,6 +10,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Entidade {
 
     @Id
@@ -28,28 +26,25 @@ public class Entidade {
     /**
      * name in singular, upper case
      */
-    private String singularNameUpper;
+    private String singularPascalCase;
     /**
      * name in plural, upper case
      */
-    private String pluralNameUpper;
+    private String pluralPascalCase;
     /**
      * name in singular, lower case
      */
-    private String singularNameLower;
-    /**
-     * name in plural, lower case
-     */
-    private String pluralNameLower;
-
     private String descricao;
 
-    private boolean incluir;
-    private boolean alterar;
-    private boolean excluir;
-    private boolean consultar;
+    private Boolean incluir;
+    private Boolean alterar;
+    private Boolean excluir;
+    private Boolean consultar;
 
     @OneToMany(mappedBy = "entidade", fetch = FetchType.EAGER)
     @OrderBy("fieldOrder")
     private Set<Campo> campos;
+
+    private String singularCamelCase;
+    private String pluralCamelCase;
 }

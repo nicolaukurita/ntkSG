@@ -1,6 +1,6 @@
 <div class='card'>
     <div class='card-header'>
-        {{pageTitle + ': ' + ${entidade.singularNameLower}?.productName}}
+        {{pageTitle + ': ' + ${entidade.singularCamelCase}?.productName}}
     </div>
     <div class='card-body'
          *ngIf='product'>
@@ -10,7 +10,7 @@
 #if ($campo.inputOutputType == 'IO' || $campo.inputOutputType == 'I')
                 <div class='row'>
                     <div class='col-md-4'>${campo.dicionario.displayName}:</div>
-                    <div class='col-md-8'>{{${entidade.singularNameLower}.${campo.dicionario.name}#if ($campo.outputFormat)${campo.outputFormat}#end}}</div>
+                    <div class='col-md-8'>{{${entidade.singularCamelCase}.${campo.dicionario.name}#if ($campo.outputFormat)${campo.outputFormat}#end}}</div>
                 </div>
 #end
 #end

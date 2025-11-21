@@ -15,7 +15,7 @@ create table campo (
         descricao varchar(255),
         excluir bit not null,
         incluir bit not null,
-        singularNameUpper varchar(255),
+        singularPascalCase varchar(255),
         projeto_id integer not null,
         primary key (id)
     ) engine=InnoDB
@@ -73,7 +73,7 @@ create table campo (
 INSERT INTO sgdb.usuario (first_name, last_name) VALUES ('Nicolau','Kurita');
 INSERT INTO sgdb.projeto (nome) VALUES ('ntkSGC');
 INSERT INTO sgdb.tarefa (nome, projeto_id,situacao) VALUES ('teste',1,'PENDENTE');
-INSERT INTO `sgdb`.`entidade` (`id`, `alterar`, `consultar`, `descricao`, `excluir`, `incluir`, `singularNameUpper`, `projeto_id`) VALUES ('1', b'1', b'1', 'Usuario', b'1', b'1', 'Usuario', b'1');
+INSERT INTO `sgdb`.`entidade` (`id`, `alterar`, `consultar`, `descricao`, `excluir`, `incluir`, `singularPascalCase`, `projeto_id`) VALUES ('1', b'1', b'1', 'Usuario', b'1', b'1', 'Usuario', b'1');
 INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('1', 'Id', 'text', '1');
 INSERT INTO `sgdb`.`campo` (`id`, `nome`, `tipo`, `entidade_id`) VALUES ('2', 'Nome', 'text', '1');
 select * from sgdb.tarefa;
@@ -120,23 +120,23 @@ VALUES('application html','templates/projeto/component.html','angular/src/app','
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME)
 VALUES('application ts component','templates/projeto/component.ts', 'angular/src/app', 'app.component.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('html list for component','templates/entidade/component-list.html','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}-${tipo}.component.html');
+VALUES('html list for component','templates/entidade/component-list.html','angular/src/${entidade.pluralCamelCase}','${entidade.singularCamelCase}-${tipo}.component.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('ts list for component','templates/entidade/component-list.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}-${tipo}.component.ts');
+VALUES('ts list for component','templates/entidade/component-list.ts','angular/src/${entidade.pluralCamelCase}','${entidade.singularCamelCase}-${tipo}.component.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('ts module for component','templates/entidade/module.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}.module.ts');
+VALUES('ts module for component','templates/entidade/module.ts','angular/src/${entidade.pluralCamelCase}','${entidade.singularCamelCase}.module.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('html detail for component','templates/entidade/detail.component.html','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}-detail.component.html');
+VALUES('html detail for component','templates/entidade/detail.component.html','angular/src/${entidade.pluralCamelCase}','${entidade.singularCamelCase}-detail.component.html');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('ts detail for component','templates/entidade/detail.component.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}-detail.component.ts');
+VALUES('ts detail for component','templates/entidade/detail.component.ts','angular/src/${entidade.pluralCamelCase}','${entidade.singularCamelCase}-detail.component.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('component guard ts','templates/entidade/detail.guard.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}-detail.guard.ts');
+VALUES('component guard ts','templates/entidade/detail.guard.ts','angular/src/${entidade.pluralCamelCase}','${entidade.singularCamelCase}-detail.guard.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('application module ts','templates/projeto/app.module.ts','angular/src/app','app.module.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('component interface ts','templates/entidade/interface.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}.ts');
+VALUES('component interface ts','templates/entidade/interface.ts','angular/src/${entidade.pluralCamelCase}','${entidade.singularCamelCase}.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
-VALUES('component service ts','templates/entidade/service.ts','angular/src/${entidade.pluralNameLower}','${entidade.singularNameLower}.service.ts');
+VALUES('component service ts','templates/entidade/service.ts','angular/src/${entidade.pluralCamelCase}','${entidade.singularCamelCase}.service.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
 VALUES('welcome component ts','templates/projeto/welcome.component.ts','angular/src/home','welcome.component.ts');
 INSERT INTO TEMPLATE (NAME,INPUT_TEMPLATE_PATH,OUTPUT_PATH,FILE_NAME )
@@ -144,8 +144,8 @@ VALUES('welcome component html','templates/projeto/welcome.component.html','angu
 
 
 update TEMPLATE
-set OUTPUT_PATH ='angular/src/${entidade.singularNameUpper}',
-FILE_NAME ='${entidade.singularNameUpper}-${tipo}.component.html'
+set OUTPUT_PATH ='angular/src/${entidade.singularPascalCase}',
+FILE_NAME ='${entidade.singularPascalCase}-${tipo}.component.html'
 where id=3;
 
 update ENTIDADE
@@ -155,7 +155,7 @@ set NAME_LOWER ='product'
 
 update TEMPLATE
 set INPUT_TEMPLATE_PATH ='templates/entidade/component-list.html'
-,FILE_NAME ='${entidade.singularNameUpper}-${tipo}.component.html'
+,FILE_NAME ='${entidade.singularPascalCase}-${tipo}.component.html'
 where id =3;
 
 update tarefa set SITUACAO ='PENDENTE';

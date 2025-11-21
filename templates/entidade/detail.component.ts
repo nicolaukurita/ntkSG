@@ -1,36 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { I${entidade.singularNameUpper} } from './${entidade.singularNameLower}';
-import { ${entidade.singularNameUpper}Service } from './${entidade.singularNameLower}.service';
+import { I${entidade.singularPascalCase} } from './${entidade.singularCamelCase}';
+import { ${entidade.singularPascalCase}Service } from './${entidade.singularCamelCase}.service';
 
 @Component({
-  templateUrl: './${entidade.singularNameLower}-detail.component.html',
-  styleUrls: ['./${entidade.singularNameLower}-detail.component.css']
+  templateUrl: './${entidade.singularCamelCase}-detail.component.html',
+  styleUrls: ['./${entidade.singularCamelCase}-detail.component.css']
 })
-export class ${entidade.singularNameUpper}DetailComponent implements OnInit {
-  pageTitle = '${entidade.singularNameUpper} Detail';
+export class ${entidade.singularPascalCase}DetailComponent implements OnInit {
+  pageTitle = '${entidade.singularPascalCase} Detail';
   errorMessage = '';
-  ${entidade.singularNameLower}: I${entidade.singularNameUpper} | undefined;
+  ${entidade.singularCamelCase}: I${entidade.singularPascalCase} | undefined;
 
 constructor(private route: ActivatedRoute,
               private router: Router,
-              private ${entidade.singularNameLower}Service: ${entidade.singularNameUpper}Service) {
+              private ${entidade.singularCamelCase}Service: ${entidade.singularPascalCase}Service) {
   }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
-      this.get${entidade.singularNameUpper}(id);
+      this.get${entidade.singularPascalCase}(id);
     }
   }
-  get${entidade.singularNameUpper}(id: number): void {
-    this.${entidade.singularNameLower}Service.get${entidade.singularNameUpper}(id).subscribe({
-      next: ${entidade.singularNameLower} => this.${entidade.singularNameLower} = ${entidade.singularNameLower},
+  get${entidade.singularPascalCase}(id: number): void {
+    this.${entidade.singularCamelCase}Service.get${entidade.singularPascalCase}(id).subscribe({
+      next: ${entidade.singularCamelCase} => this.${entidade.singularCamelCase} = ${entidade.singularCamelCase},
       error: err => this.errorMessage = err
     });
   }
 
   onBack(): void {
-    this.router.navigate(['/${entidade.pluralNameLower}']);
+    this.router.navigate(['/${entidade.pluralCamelCase}']);
   }
 }

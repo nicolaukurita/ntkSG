@@ -2,27 +2,27 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map, tap } from 'rxjs/operators';
-import { I${entidade.singularNameUpper} } from "./${entidade.singularNameLower}";
+import { I${entidade.singularPascalCase} } from "./${entidade.singularCamelCase}";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ${entidade.singularNameUpper}Service {
-    private ${entidade.singularNameLower}Url = 'api/${entidade.pluralNameLower}/${entidade.pluralNameLower}.json';
+export class ${entidade.singularPascalCase}Service {
+    private ${entidade.singularCamelCase}Url = 'api/${entidade.pluralCamelCase}/${entidade.pluralCamelCase}.json';
     constructor(private http: HttpClient) { }
 
-    get${entidade.pluralNameUpper}(): Observable<I${entidade.singularNameUpper}[]> {
-    return this.http.get<I${entidade.singularNameUpper}[]>(this.${entidade.singularNameLower}Url)
+    get${entidade.pluralPascalCase}(): Observable<I${entidade.singularPascalCase}[]> {
+    return this.http.get<I${entidade.singularPascalCase}[]>(this.${entidade.singularCamelCase}Url)
           .pipe(
             tap(data => console.log('All: ', JSON.stringify(data))),
             catchError(this.handleError)
           );
     }
 
-  get${entidade.singularNameUpper}(id: number): Observable<I${entidade.singularNameUpper} | undefined> {
-    return this.get${entidade.pluralNameUpper}()
+  get${entidade.singularPascalCase}(id: number): Observable<I${entidade.singularPascalCase} | undefined> {
+    return this.get${entidade.pluralPascalCase}()
       .pipe(
-        map((${entidade.pluralNameLower}: I${entidade.singularNameUpper}[]) => ${entidade.pluralNameLower}.find(p => p.${entidade.singularNameLower}Id === id))
+        map((${entidade.pluralCamelCase}: I${entidade.singularPascalCase}[]) => ${entidade.pluralCamelCase}.find(p => p.${entidade.singularCamelCase}Id === id))
       );
   }
 

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ${entidade.singularNameUpper}DetailGuard implements CanActivate {
+export class ${entidade.singularPascalCase}DetailGuard implements CanActivate {
 
   constructor(private router: Router) {}
 
@@ -14,8 +14,8 @@ export class ${entidade.singularNameUpper}DetailGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const id = Number(route.paramMap.get('id'));
     if (isNaN(id) || id < 1) {
-      alert('Invalid ${entidade.singularNameLower} id');
-      this.router.navigate(['/${entidade.singularNameLower}']);
+      alert('Invalid ${entidade.singularCamelCase} id');
+      this.router.navigate(['/${entidade.singularCamelCase}']);
       return false;
     }
     return true;
