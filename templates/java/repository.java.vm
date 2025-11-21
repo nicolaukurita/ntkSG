@@ -1,0 +1,16 @@
+package ${projeto.groupName}.${projeto.nome}.repository;
+
+import ${projeto.groupName}.${projeto.nome}.model.${entidade.singularPascalCase}Model;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface ${entidade.singularPascalCase}Repository extends JpaRepository<${entidade.singularPascalCase}Model, Integer> {
+#foreach( $campo in $campos )#if(${campo.searchable}!= $null)
+    List<${entidade.singularPascalCase}Model> findBy${campo.pascalCase}${campo.searchable}(#if (${campo.beType}!=$null)${campo.beType}#else#if ($campo.tipo=="text") String#else Integer#end#end ${campo.camelCase});
+    #end
+
+#end
+}

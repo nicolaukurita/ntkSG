@@ -1,0 +1,36 @@
+package ${projeto.groupName}.${projeto.nome}.mapper;
+
+import ${projeto.groupName}.${projeto.nome}.dto.request.${entidade.singularCamelCase}.${entidade.singularPascalCase}RequestDTO;
+import ${projeto.groupName}.${projeto.nome}.dto.response.${entidade.singularCamelCase}.${entidade.singularPascalCase}ResponseDTO;
+import ${projeto.groupName}.${projeto.nome}.model.${entidade.singularPascalCase}Model;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Component
+public class ${entidade.singularPascalCase}Mapper {
+
+    public ${entidade.singularPascalCase}Model toEntity(${entidade.singularPascalCase}RequestDTO create${entidade.singularPascalCase}DTO) {
+        return ${entidade.singularPascalCase}Model.builder()
+#foreach( $campo in $campos )
+         .#if (${campo.feCamelCase}!=$null)${campo.feCamelCase}#else${campo.camelCase}#end(create${entidade.singularPascalCase}DTO.${campo.camelCase}())
+#end
+                .build();
+    }
+
+
+    public ${entidade.singularPascalCase}ResponseDTO toResponseDTO(${entidade.singularPascalCase}Model ${entidade.singularCamelCase}) {
+        return ${entidade.singularPascalCase}ResponseDTO.builder()
+#foreach( $campo in $campos )
+         .${campo.camelCase}(${entidade.singularCamelCase}.get#if (${campo.fePascalCase}!=$null)${campo.fePascalCase}#else${campo.pascalCase}#end())
+#end
+                .build();
+    }
+
+    public List<${entidade.singularPascalCase}ResponseDTO> toResponseDTOList(List<${entidade.singularPascalCase}Model> ${entidade.pluralCamelCase}) {
+        return ${entidade.pluralCamelCase}.stream()
+                .map(this::toResponseDTO)
+                .collect(Collectors.toList());
+    }
+}

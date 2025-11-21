@@ -1,0 +1,135 @@
+import { useEffect, useState } from "react";
+import "./styles.css";
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
+import { Message, MESSAGE_TYPE } from "../../components/message";
+
+function ${entidade.singularPascalCase}Handler(${entidade.pluralCamelCase}, setSubmitMessage) {
+    if (!Array.isArray(${entidade.pluralCamelCase})) {
+        return ${entidade.pluralCamelCase};
+    }
+
+    var i = 0;
+
+    var content = ${entidade.pluralCamelCase}.map(function (${entidade.singularCamelCase}Item) {
+
+        return (
+            <div key={i++} className="${entidade.singularCamelCase}-item">
+                <form className="${entidade.singularCamelCase}-item-form" onSubmit={async (e) => await formHandle(e, setSubmitMessage)}>
+#foreach( $campo in $campos )
+#if($campo.isKey)
+                    <input type="hidden" name="${campo.fieldName}" value={${entidade.singularCamelCase}Item.${campo.fieldName}} />
+#else
+                    <input type="text" className="${entidade.singularCamelCase}-field" name="${campo.fieldName}" defaultValue={${entidade.singularCamelCase}Item.${campo.fieldName}} placeholder="${campo.displayName}" />
+#end
+#end
+#if ($entidade.alterar)
+                    <input type="submit" className="${entidade.singularCamelCase}-button" name="update" value="Alterar" />
+#end
+#if ($entidade.excluir)
+                    <input type="submit" className="${entidade.singularCamelCase}-button" name="delete" value="Excluir" />
+#end
+                </form>
+            </div>
+        );
+    })
+
+    return (
+        <div>
+            {content}
+        </div>
+    )
+}
+
+function formDataToJsonMapper(#foreach($campo in $campos)${campo.camelCase}#if( $foreach.hasNext ),#end#end) {
+    let formatedData = {
+#foreach( $campo in $campos )
+        ${campo.camelCase}: ${campo.camelCase}#if( $foreach.hasNext ),
+#end
+#end
+
+    };
+
+    return JSON.stringify(formatedData);
+}
+
+async function formHandle(event, setMessage) {
+    event.preventDefault();
+
+    const submitter = event.nativeEvent.submitter.name;
+#foreach( $campo in $campos )
+    const ${campo.camelCase} = event.target.${campo.camelCase}.value;
+#end
+
+#set ($virgula=" ")
+    const jsonData = formDataToJsonMapper(#foreach( $campo in $campos )${campo.camelCase}#if( $foreach.hasNext ),#end#end);
+
+    const axiosConfig = { headers: { 'Content-Type': 'application/json' } };
+
+    try {
+        if (submitter === "update") {
+            await axios.put(BACKEND_URL + "/${entidade.singularCamelCase}/" + id, jsonData, axiosConfig);
+        } else
+            if (submitter === "delete") {
+                await axios.delete(BACKEND_URL + "/${entidade.singularCamelCase}/" + id, axiosConfig);
+            } else {
+                await axios.post(BACKEND_URL + "/${entidade.singularCamelCase}", jsonData, axiosConfig);
+            }
+
+        const title = "Success!";
+        const message = "${entidade.singularPascalCase} was " + submitter + "d with success!";
+
+        setMessage(<Message title={title} message={message} type={MESSAGE_TYPE.SUCCESS} />);
+
+    } catch (error) {
+
+        const title = "Fail!";
+        const message = error.message;
+
+        setMessage(<Message title={title} message={message} type={MESSAGE_TYPE.ERROR} />);
+    }
+}
+
+export function ${entidade.singularPascalCase}() {
+
+    const [${entidade.singularCamelCase}Data, set${entidade.singularPascalCase}Data] = useState("No data");
+    const [submitMessage, setSubmitMessage] = useState("");
+
+    useEffect(function () {
+        axios.get(BACKEND_URL + "/${entidade.singularCamelCase}")
+            .then(function (response) {
+                if (response.data === "")
+                    return;
+                console.log(response.data);
+                set${entidade.singularPascalCase}Data(${entidade.singularPascalCase}Handler(response.data, setSubmitMessage));
+            })
+            .catch(function (error) {
+                set${entidade.singularPascalCase}Data("Error loading ${entidade.singularCamelCase} data.");
+            }).finally(function () {
+            });
+    }, []);
+
+    return (
+        <div className="${entidade.singularCamelCase}">
+            <h1>${entidade.singularPascalCase} Page</h1>
+            {submitMessage}
+            <form onSubmit={async (e) => await formHandle(e, setSubmitMessage)}>
+                <h3 className="${entidade.singularCamelCase}-form">Add new ${entidade.singularCamelCase}:</h3>
+#set($fieldType="")
+#foreach( $campo in $campos )
+#if ($campo.tipo=="boolean")
+#set($fieldType="checkbox")
+                <input type="${fieldType}" className="${entidade.singularCamelCase}-form" #if (${campo.size} != $null)size={${campo.size}}#end name="${campo.fieldName}" placeholder="${campo.displayName}" />
+                <label htmlFor="${campo.camelCase}">${campo.displayName}</label>
+#else
+    #set($fieldType=$campo.tipo)
+                <input type="${fieldType}" className="${entidade.singularCamelCase}-form" #if (${campo.size} != $null)size={${campo.size}}#end name="${campo.fieldName}" placeholder="${campo.displayName}" />
+#end
+#end
+                <input type="submit" className="${entidade.singularCamelCase}-form-button" name="add" value="Create new item" />
+            </form>
+
+            {${entidade.singularCamelCase}Data}
+        </div>
+    );
+}

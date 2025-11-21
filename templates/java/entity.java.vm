@@ -1,0 +1,30 @@
+package ${projeto.groupName}.${projeto.nome}.model;
+
+import lombok.*;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="${entidade.singularCamelCase}")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class ${entidade.singularPascalCase}Model {
+#foreach($campo in $campos)
+#set($fieldType="")
+#if($campo.tipo=="text")
+    #set($fieldType="String")
+#elseif($campo.tipo=="number")
+    #set($fieldType="Integer")
+#elseif($campo.tipo=="datetime")
+    #set($fieldType="LocalDateTime")
+#end
+#if($campo.isKey)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+#end
+    private ${fieldType} ${campo.camelCase};
+#end
+}

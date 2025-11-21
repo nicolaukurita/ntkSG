@@ -1,0 +1,17 @@
+package ${projeto.groupName}.${projeto.nome}.dto.response.${entidade.singularCamelCase};
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
+
+@Builder
+public record ${entidade.singularPascalCase}ResponseDTO(
+#foreach( $campo in $campos )
+#if (${campo.feCamelCase}!=$null)
+        @JsonProperty("${campo.feCamelCase}")
+#end
+        #if (${campo.beType}!=$null)${campo.beType}#else#if ($campo.tipo=="text") String#else Integer#end#end ${campo.CamelCase}#if( $foreach.hasNext ),
+#end
+#end
+
+) {
+}

@@ -1,0 +1,39 @@
+package ${projeto.groupName}.${projeto.nome}.service;
+
+import ${projeto.groupName}.${projeto.nome}.model.${entidade.singularPascalCase}Model;
+import ${projeto.groupName}.${projeto.nome}.repository.${entidade.singularPascalCase}Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ${entidade.singularPascalCase}Service {
+    @Autowired
+    ${entidade.singularPascalCase}Repository ${entidade.singularCamelCase}Repository;
+
+    public Optional<${entidade.singularPascalCase}Model> findById(Integer id) {
+        return ${entidade.singularCamelCase}Repository.findById(id);
+    }
+
+    public List<${entidade.singularPascalCase}Model> findAll() {
+        return ${entidade.singularCamelCase}Repository.findAll();
+    }
+
+    public ${entidade.singularPascalCase}Model save(${entidade.singularPascalCase}Model ${entidade.singularCamelCase}) {
+        return ${entidade.singularCamelCase}Repository.save(${entidade.singularCamelCase});
+    }
+
+    public void deleteById(Integer id) {
+        ${entidade.singularCamelCase}Repository.deleteById(id);
+    }
+
+#foreach( $campo in $campos )
+#if(${campo.searchable}!= $null)
+    public List<${entidade.singularPascalCase}Model> findBy${campo.pascalCase}${campo.searchable}(#if (${campo.beType}!=$null)${campo.beType}#else#if ($campo.tipo=="text") String#else Integer#end#end ${campo.camelCase}) {
+        return ${entidade.singularCamelCase}Repository.findBy${campo.pascalCase}${campo.searchable}${campo.searchable}(${campo.camelCase});
+    }
+#end
+#end
+}

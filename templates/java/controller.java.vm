@@ -1,0 +1,63 @@
+package ${projeto.groupName}.${projeto.nome}.controller;
+
+import ${projeto.groupName}.${projeto.nome}.dto.request.${entidade.singularCamelCase}.${entidade.singularPascalCase}RequestDTO;
+import ${projeto.groupName}.${projeto.nome}.dto.response.${entidade.singularCamelCase}.${entidade.singularPascalCase}ResponseDTO;
+import ${projeto.groupName}.${projeto.nome}.mapper.${entidade.singularPascalCase}Mapper;
+import ${projeto.groupName}.${projeto.nome}.model.${entidade.singularPascalCase}Model;
+import ${projeto.groupName}.${projeto.nome}.service.${entidade.singularPascalCase}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping(value = "/${entidade.singularCamelCase}")
+@CrossOrigin()
+public class ${entidade.singularPascalCase}Controller {
+    @Autowired
+    ${entidade.singularPascalCase}Service ${entidade.singularCamelCase}Service;
+
+    @Autowired
+    ${entidade.singularPascalCase}Mapper ${entidade.singularCamelCase}Mapper;
+
+    @GetMapping
+    public List<${entidade.singularPascalCase}ResponseDTO> listAll() {
+        return ${entidade.singularCamelCase}Mapper.toResponseDTOList(${entidade.singularCamelCase}Service.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public Optional<${entidade.singularPascalCase}ResponseDTO> findById(@PathVariable Integer id) {
+            Optional<${entidade.singularPascalCase}Model> byId = ${entidade.singularCamelCase}Service.findById(id);
+            return byId.map(${entidade.singularCamelCase}Model -> ${entidade.singularCamelCase}Mapper.toResponseDTO(${entidade.singularCamelCase}Model));
+    }
+#foreach( $campo in $campos )
+#if(${campo.searchable}!= $null)
+    @GetMapping("/${campo.camelCase}/{${campo.camelCase}}")
+    public List<${entidade.singularPascalCase}ResponseDTO> listBy${campo.pascalCase}(@PathVariable #if (${campo.beType}!=$null)${campo.beType}#else#if ($campo.tipo=="text") String#else Integer#end#end ${campo.camelCase}) {
+        return ${entidade.singularCamelCase}Mapper.toResponseDTOList(${entidade.singularCamelCase}Service.findBy${campo.pascalCase}${campo.searchable}(${campo.camelCase}));
+    }
+#end
+#end
+
+#if ($entidade.incluir)
+    @PostMapping
+    public ${entidade.singularPascalCase}ResponseDTO add${entidade.singularPascalCase}(@RequestBody ${entidade.singularPascalCase}RequestDTO create${entidade.singularPascalCase}DTO) {
+        return ${entidade.singularCamelCase}Mapper.toResponseDTO(${entidade.singularCamelCase}Service.save(${entidade.singularCamelCase}Mapper.toEntity(create${entidade.singularPascalCase}DTO)));
+    }
+#end
+
+#if ($entidade.alterar)
+    @PutMapping("/{id}")
+    public ${entidade.singularPascalCase}ResponseDTO update${entidade.singularPascalCase}(@PathVariable Integer id, @RequestBody ${entidade.singularPascalCase}RequestDTO create${entidade.singularPascalCase}DTO) {
+        return ${entidade.singularCamelCase}Mapper.toResponseDTO(${entidade.singularCamelCase}Service.save(${entidade.singularCamelCase}Mapper.toEntity(create${entidade.singularPascalCase}DTO)));
+    }
+#end
+
+#if ($entidade.excluir)
+    @DeleteMapping("/{id}")
+    public void delete${entidade.singularPascalCase}(@PathVariable Integer id) {
+        ${entidade.singularCamelCase}Service.deleteById(id);
+    }
+#end
+}
